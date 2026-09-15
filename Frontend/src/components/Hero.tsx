@@ -15,6 +15,7 @@ const suggestions = [
 
 export default function Hero() {
   const [imgFailed, setImgFailed] = useState(false)
+  const [message, setMessage] = useState('')
   const navigate = useNavigate()
   const { t } = useLanguage()
 
@@ -23,6 +24,11 @@ export default function Hero() {
       sessionStorage.setItem('tadreeb.pendingMessage', message)
     }
     navigate('/chat')
+  }
+
+  const handleSend = () => {
+    goToChat(message)
+    setMessage('')
   }
 
   return (
@@ -66,9 +72,11 @@ export default function Hero() {
 
         <div className="animate-fade-up mt-8 w-full max-w-xl [animation-delay:260ms]">
           <ChatInput
+            value={message}
+            onChange={setMessage}
+            onSubmit={handleSend}
             size="lg"
             autoFocus={false}
-            onSend={(message) => goToChat(message)}
             placeholder={t('hero_input_placeholder')}
           />
         </div>

@@ -8,6 +8,7 @@ interface ChatInputProps {
   isLoading?: boolean;
   placeholder?: string;
   size?: "lg" | "md";
+  autoFocus?: boolean;
 }
 
 export default function ChatInput({
@@ -17,6 +18,7 @@ export default function ChatInput({
   isLoading,
   placeholder = "اكتب سؤالك عن التدريب...",
   size = "md",
+  autoFocus = false,
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -51,6 +53,7 @@ export default function ChatInput({
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
+        autoFocus={autoFocus}
         rows={1}
         dir="rtl"
         className={`flex-1 resize-none bg-transparent outline-none text-deep-navy placeholder:text-text-secondary/70 py-2.5 max-h-32 ${

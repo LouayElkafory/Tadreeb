@@ -1,4 +1,5 @@
 export type SourceType = "official" | "government" | "document" | "community";
+export type Language = "ar" | "en";
 
 export interface Source {
   id: string;

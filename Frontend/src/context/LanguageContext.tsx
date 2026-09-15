@@ -1,9 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Language } from '@/types'
 
-interface Dictionary {
-  [key: string]: { ar: string; en: string }
-}
+type LocalizedString = Record<Language, string>
+type Dictionary = Record<string, LocalizedString>
 
 const dictionary: Dictionary = {
   nav_home: { ar: 'الرئيسية', en: 'Home' },
