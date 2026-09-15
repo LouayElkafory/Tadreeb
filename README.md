@@ -53,6 +53,49 @@ The chatbot combines two complementary approaches:
    ollama pull nomic-embed-text
    ```
 
+4. Copy `.env.example` to `.env` and adjust values if needed.
+
+## Building the RAG index and starting the app
+
+Run each pipeline stage once, in order, from the project root:
+
+```bash
+cd 01_scraping && python pdf_extractor.py && cd ..
+cd 03_rag_pipeline/preprocessing && python clean_text.py && python deduplicate.py && python chunker.py && cd ../..
+cd 03_rag_pipeline/embeddings && python embed_and_store.py && cd ../..
+cd 04_finetuning_pipeline && python prepare_dataset.py && cd ..
+```
+
+Then start the API:
+
+```bash
+cd 06_app
+uvicorn api:app --reload
+```
+
+(Optional) build a custom Ollama model from `04_finetuning_pipeline/Modelfile` and
+point `FINETUNED_MODEL_NAME` in `.env` at it:
+
+```bash
+cd 04_finetuning_pipeline
+ollama create depi-iti-nti-assistant -f Modelfile
+```
+
+Finally, start the frontend:
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+Set `VITE_USE_MOCK_API=false` in `Frontend/.env` once the backend is running so
+the UI calls the real API instead of its mock data.
+
+See [`09_docs/FILE_ORDER.md`](09_docs/FILE_ORDER.md) for the full file-by-file
+order and [`09_docs/project_split_5_parts.md`](09_docs/project_split_5_parts.md)
+for team ownership per stage.
+
 ## Recommended Execution Order
 
 Run the project stages in the following order:
