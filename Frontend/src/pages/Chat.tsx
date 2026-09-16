@@ -10,13 +10,7 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import SuggestedQuestions from "../components/SuggestedQuestions";
 import MobileDrawer from "../components/MobileDrawer";
 import { useChat } from "../hooks/useChat";
-
-const EMPTY_STATE_SUGGESTIONS = [
-  "إيه شروط التقديم في ITI؟",
-  "أنا خريج تجارة، إيه المناسب ليا؟",
-  "إيه أفضل مسار للذكاء الاصطناعي؟",
-  "هل التدريب مجاني؟",
-];
+import { useLanguage } from "../hooks/useLanguage";
 
 export default function Chat() {
   const {
@@ -31,6 +25,7 @@ export default function Chat() {
     regenerateLast,
     updateMessage,
   } = useChat();
+  const { t } = useLanguage();
 
   const [input, setInput] = useState("");
   const [historyOpen, setHistoryOpen] = useState(false);
@@ -41,6 +36,12 @@ export default function Chat() {
   const autoSentRef = useRef(false);
 
   const messages = activeConversation?.messages ?? [];
+  const emptyStateSuggestions = [
+    t("chat.suggestion.iti"),
+    t("chat.suggestion.business"),
+    t("chat.suggestion.ai"),
+    t("chat.suggestion.free"),
+  ];
 
   // handle prefill/autosend coming from landing page
   useEffect(() => {
@@ -105,14 +106,14 @@ export default function Chat() {
                     <MessageCircleQuestion size={28} />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-extrabold text-deep-navy mb-2">
-                    أهلاً بيك في تدريب 👋
+                    {t("chat.welcomeTitle")}
                   </h2>
                   <p className="text-text-secondary max-w-sm mb-8">
-                    اسألني عن البرامج، شروط التقديم، التخصصات، أو أي حاجة تخص التدريب التقني.
+                    {t("chat.welcomeBody")}
                   </p>
                   <div className="w-full max-w-md">
                     <SuggestedQuestions
-                      questions={EMPTY_STATE_SUGGESTIONS}
+                      questions={emptyStateSuggestions}
                       onSelect={handleSend}
                       variant="cards"
                     />
@@ -156,7 +157,7 @@ export default function Chat() {
                 isLoading={isLoading}
               />
               <p className="text-[11px] text-text-secondary text-center mt-2">
-                تدريب بيقدملك معلومات إرشادية بناءً على مصادر متاحة، وممكن تحتوي على أخطاء.
+                {t("chat.disclaimer")}
               </p>
             </div>
           </div>
@@ -171,7 +172,7 @@ export default function Chat() {
       </div>
 
       {/* Mobile history drawer */}
-      <MobileDrawer open={historyOpen} onClose={() => setHistoryOpen(false)} title="سجل المحادثات" side="start">
+      <MobileDrawer open={historyOpen} onClose={() => setHistoryOpen(false)} title={t("chat.historyTitle")} side="start">
         <ConversationSidebar
           conversations={conversations}
           activeId={activeId}
@@ -191,7 +192,7 @@ export default function Chat() {
       <MobileDrawer
         open={sourcesDrawerOpen}
         onClose={() => setSourcesDrawerOpen(false)}
-        title="المصادر"
+        title={t("chat.sourcesTitle")}
         side="end"
       >
         <SourcesPanel sources={allSources} />

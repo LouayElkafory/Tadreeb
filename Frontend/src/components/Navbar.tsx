@@ -5,16 +5,16 @@ import Logo from "./Logo";
 import { useLanguage } from "../hooks/useLanguage";
 
 const NAV_LINKS = [
-  { to: "/", label: "الرئيسية" },
-  { to: "/sources", label: "المصادر" },
-  { to: "/assistant", label: "المساعد الذكي" },
-  { to: "/organizations", label: "المؤسسات" },
-  { to: "/programs", label: "البرامج" },
+  { to: "/", labelKey: "nav.home" },
+  { to: "/sources", labelKey: "nav.sources" },
+  { to: "/assistant", labelKey: "nav.assistant" },
+  { to: "/organizations", labelKey: "nav.organizations" },
+  { to: "/programs", labelKey: "nav.programs" },
 ];
 
 export default function Navbar({ transparent = false }: { transparent?: boolean }) {
   const [open, setOpen] = useState(false);
-  const { language, toggleLanguage } = useLanguage();
+  const { t, toggleLanguage } = useLanguage();
 
   return (
     <>
@@ -41,7 +41,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                   }`
                 }
               >
-                {link.label}
+                {t(link.labelKey)}
               </NavLink>
             ))}
           </div>
@@ -50,21 +50,21 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             <button
               onClick={toggleLanguage}
               className="hidden sm:flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary rounded-lg hover:bg-baby-blue transition-colors"
-              aria-label="Switch language"
+              aria-label={t("nav.switchAria")}
             >
               <Globe size={16} />
-              {language === "ar" ? "English" : "العربية"}
+              {t("nav.switchTo")}
             </button>
             <Link
               to="/login"
               className="hidden sm:inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary-dark rounded-full transition-colors shadow-sm"
             >
-              دخول
+              {t("nav.login")}
             </Link>
             <button
               className="lg:hidden p-2 rounded-lg text-deep-navy hover:bg-baby-blue transition-colors"
               onClick={() => setOpen(true)}
-              aria-label="فتح القائمة"
+              aria-label={t("nav.openMenu")}
             >
               <Menu size={22} />
             </button>
@@ -85,7 +85,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
               <button
                 onClick={() => setOpen(false)}
                 className="p-2 rounded-lg hover:bg-baby-blue text-deep-navy"
-                aria-label="إغلاق"
+                aria-label={t("nav.closeMenu")}
               >
                 <X size={22} />
               </button>
@@ -102,7 +102,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                     }`
                   }
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </NavLink>
               ))}
             </div>
@@ -112,14 +112,14 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                 className="flex items-center gap-2 px-4 py-3 rounded-xl text-base font-medium text-deep-navy hover:bg-baby-blue"
               >
                 <Globe size={18} />
-                {language === "ar" ? "English" : "العربية"}
+                {t("nav.switchTo")}
               </button>
               <Link
                 to="/login"
                 onClick={() => setOpen(false)}
                 className="text-center px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary"
               >
-                دخول
+                {t("nav.login")}
               </Link>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import type { ChatApiResponse } from "../types";
+import type { Language } from "../types";
 import { generateMockResponse } from "../data/mockChat";
 
 const USE_MOCK = import.meta.env.VITE_USE_MOCK_API !== "false";
@@ -16,19 +17,20 @@ export class ChatApiError extends Error {}
  */
 export async function sendChatMessage(
   message: string,
-  conversationId?: string
+  conversationId?: string,
+  language: Language = "ar"
 ): Promise<ChatApiResponse> {
   if (USE_MOCK) {
     // Simulate network + "thinking" latency
     await delay(900 + Math.random() * 700);
-    return generateMockResponse(message);
+    return generateMockResponse(message, language);
   }
 
   try {
     const response = await fetch(`${API_URL}/api/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message, conversation_id: conversationId }),
+      body: JSON.stringify({ message, conversation_id: conversationId, language }),
     });
 
     if (!response.ok) {

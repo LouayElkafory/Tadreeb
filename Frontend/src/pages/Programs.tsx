@@ -4,8 +4,10 @@ import ProgramCard from "../components/ProgramCard";
 import EmptyState from "../components/EmptyState";
 import { programs, tracks } from "../data/programs";
 import { organizations } from "../data/organizations";
+import { useLanguage } from "../hooks/useLanguage";
+import type { ProgramLevel } from "../types";
 
-const LEVELS = ["مبتدئ", "متوسط", "متقدم"] as const;
+const LEVELS: ProgramLevel[] = ["beginner", "intermediate", "advanced"];
 
 export default function Programs() {
   const [search, setSearch] = useState("");
@@ -13,19 +15,21 @@ export default function Programs() {
   const [track, setTrack] = useState<string | null>(null);
   const [level, setLevel] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const { localize, t } = useLanguage();
 
   const filtered = useMemo(() => {
+    const normalizedSearch = search.toLowerCase();
     return programs.filter((p) => {
       const matchesSearch =
         !search ||
-        p.name.toLowerCase().includes(search.toLowerCase()) ||
-        p.description.toLowerCase().includes(search.toLowerCase());
+        localize(p.name).toLowerCase().includes(normalizedSearch) ||
+        localize(p.description).toLowerCase().includes(normalizedSearch);
       const matchesOrg = !org || p.organization === org;
       const matchesTrack = !track || p.track === track;
       const matchesLevel = !level || p.level === level;
       return matchesSearch && matchesOrg && matchesTrack && matchesLevel;
     });
-  }, [search, org, track, level]);
+  }, [localize, search, org, track, level]);
 
   const clearFilters = () => {
     setSearch("");
@@ -39,9 +43,9 @@ export default function Programs() {
   return (
     <div className="max-w-6xl mx-auto px-5 py-14 sm:py-16">
       <div className="text-center max-w-xl mx-auto mb-10">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-deep-navy mb-4">اكتشف مسارك التقني</h1>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-deep-navy mb-4">{t("programs.title")}</h1>
         <p className="text-text-secondary text-base leading-relaxed">
-          اختار مجال يهمك واسأل المساعد عن البرامج المناسبة ليك.
+          {t("programs.body")}
         </p>
       </div>
 
@@ -51,7 +55,7 @@ export default function Programs() {
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="دور على برنامج أو مجال..."
+            placeholder={t("programs.search")}
             className="w-full ps-11 pe-4 py-3 rounded-2xl border border-soft-blue bg-white focus:border-primary outline-none text-sm text-deep-navy placeholder:text-text-secondary/70"
           />
         </div>
@@ -62,48 +66,48 @@ export default function Programs() {
           }`}
         >
           <SlidersHorizontal size={16} />
-          فلاتر
+          {t("common.filters")}
         </button>
       </div>
 
       {filtersOpen && (
         <div className="grid sm:grid-cols-3 gap-3 mb-6 p-4 rounded-2xl bg-baby-blue/40 border border-soft-blue animate-fade-up">
           <div>
-            <label className="block text-xs font-semibold text-text-secondary mb-1.5">المؤسسة</label>
+            <label className="block text-xs font-semibold text-text-secondary mb-1.5">{t("programs.organization")}</label>
             <select
               value={org ?? ""}
               onChange={(e) => setOrg(e.target.value || null)}
               className="w-full px-3 py-2.5 rounded-xl border border-soft-blue bg-white text-sm text-deep-navy outline-none focus:border-primary"
             >
-              <option value="">كل المؤسسات</option>
+              <option value="">{t("common.allOrganizations")}</option>
               {organizations.map((o) => (
                 <option key={o.id} value={o.id}>{o.shortName}</option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-xs font-semibold text-text-secondary mb-1.5">المسار</label>
+            <label className="block text-xs font-semibold text-text-secondary mb-1.5">{t("programs.track")}</label>
             <select
               value={track ?? ""}
               onChange={(e) => setTrack(e.target.value || null)}
               className="w-full px-3 py-2.5 rounded-xl border border-soft-blue bg-white text-sm text-deep-navy outline-none focus:border-primary"
             >
-              <option value="">كل المسارات</option>
+              <option value="">{t("common.allTracks")}</option>
               {tracks.map((t) => (
-                <option key={t.id} value={t.id}>{t.name}</option>
+                <option key={t.id} value={t.id}>{localize(t.name)}</option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-xs font-semibold text-text-secondary mb-1.5">المستوى</label>
+            <label className="block text-xs font-semibold text-text-secondary mb-1.5">{t("programs.level")}</label>
             <select
               value={level ?? ""}
               onChange={(e) => setLevel(e.target.value || null)}
               className="w-full px-3 py-2.5 rounded-xl border border-soft-blue bg-white text-sm text-deep-navy outline-none focus:border-primary"
             >
-              <option value="">كل المستويات</option>
+              <option value="">{t("common.allLevels")}</option>
               {LEVELS.map((l) => (
-                <option key={l} value={l}>{l}</option>
+                <option key={l} value={l}>{t(`level.${l}`)}</option>
               ))}
             </select>
           </div>
@@ -112,13 +116,13 @@ export default function Programs() {
 
       {hasFilters && (
         <div className="flex items-center gap-2 mb-6">
-          <span className="text-xs text-text-secondary">{filtered.length} نتيجة</span>
+          <span className="text-xs text-text-secondary">{t("common.results", { count: filtered.length })}</span>
           <button
             onClick={clearFilters}
             className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary-dark"
           >
             <X size={12} />
-            امسح الفلاتر
+            {t("common.clearFilters")}
           </button>
         </div>
       )}
@@ -126,13 +130,13 @@ export default function Programs() {
       {filtered.length === 0 ? (
         <EmptyState
           icon={<Search size={22} />}
-          title="مش لاقيين برامج مطابقة للبحث"
+          title={t("programs.emptyTitle")}
           action={
             <button
               onClick={clearFilters}
               className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition-colors"
             >
-              امسح الفلاتر
+              {t("common.clearFilters")}
             </button>
           }
         />

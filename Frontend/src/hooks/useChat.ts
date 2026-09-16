@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import type { ChatMessage, Conversation } from "../types";
 import { useLocalStorage } from "./useLocalStorage";
 import { sendChatMessage, ChatApiError } from "../services/chatApi";
+import { useLanguage } from "./useLanguage";
 
 function makeId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
@@ -13,6 +14,7 @@ function titleFromMessage(message: string) {
 }
 
 export function useChat() {
+  const { language, t } = useLanguage();
   const [conversations, setConversations] = useLocalStorage<Conversation[]>(
     "tadreeb-conversations",
     []
@@ -31,7 +33,7 @@ export function useChat() {
   const createConversation = useCallback(() => {
     const newConversation: Conversation = {
       id: makeId(),
-      title: "محادثة جديدة",
+      title: t("chat.defaultTitle"),
       messages: [],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -39,7 +41,7 @@ export function useChat() {
     setConversations((prev) => [newConversation, ...prev]);
     setActiveId(newConversation.id);
     return newConversation.id;
-  }, [setConversations, setActiveId]);
+  }, [setConversations, setActiveId, t]);
 
   const deleteConversation = useCallback(
     (id: string) => {
@@ -112,7 +114,7 @@ export function useChat() {
 
       setIsLoading(true);
       try {
-        const response = await sendChatMessage(trimmed, conversationId);
+        const response = await sendChatMessage(trimmed, conversationId, language);
         const assistantMessage: ChatMessage = {
           id: makeId(),
           role: "assistant",
@@ -134,8 +136,8 @@ export function useChat() {
           id: makeId(),
           role: "assistant",
           content: isApiError
-            ? "حصلت مشكلة وإحنا بنحاول نجيب الإجابة. جرّب تاني."
-            : "حصل خطأ غير متوقع. جرّب تاني.",
+            ? t("chat.apiError")
+            : t("chat.unknownError"),
           createdAt: new Date().toISOString(),
           isError: true,
         };
@@ -152,7 +154,7 @@ export function useChat() {
 
       return conversationId;
     },
-    [activeId, isLoading, setConversations, setActiveId]
+    [activeId, isLoading, language, setConversations, setActiveId, t]
   );
 
   const regenerateLast = useCallback(
@@ -171,7 +173,7 @@ export function useChat() {
 
       setIsLoading(true);
       try {
-        const response = await sendChatMessage(lastUserMessage.content, conversationId);
+        const response = await sendChatMessage(lastUserMessage.content, conversationId, language);
         const assistantMessage: ChatMessage = {
           id: makeId(),
           role: "assistant",
@@ -191,7 +193,7 @@ export function useChat() {
         setIsLoading(false);
       }
     },
-    [conversations, isLoading, setConversations]
+    [conversations, isLoading, language, setConversations]
   );
 
   return {
