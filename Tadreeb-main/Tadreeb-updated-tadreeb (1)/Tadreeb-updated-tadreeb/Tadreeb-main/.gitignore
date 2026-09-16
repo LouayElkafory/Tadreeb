@@ -1,0 +1,16 @@
+.env
+__pycache__/
+*.pyc
+vector_db/
+.venv/
+venv/
+*.log
+.DS_Store
+finetuned_checkpoints/
+
+# local-only scratch copies, not part of the tracked repo
+/Tadreeb-main/
+/data_forTheRag/
+/data_for_fineTuning/
+/tadreeb/
+node_modules/
