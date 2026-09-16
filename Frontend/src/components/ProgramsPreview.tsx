@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import ProgramCard from './ProgramCard'
 import { programs } from '@/data/programs'
+import { useLanguage } from '@/hooks/useLanguage'
 
 export default function ProgramsPreview() {
   const preview = programs.slice(0, 4)
+  const { t } = useLanguage()
 
   return (
     <section id="institutions" className="bg-white px-5 py-20 sm:py-28">
@@ -12,17 +14,17 @@ export default function ProgramsPreview() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="text-2xl font-extrabold text-[var(--color-deep-navy)] sm:text-3xl">
-              برامج تدريبية مختارة
+              {t("home.programPreviewTitle")}
             </h2>
             <p className="mt-2 max-w-md text-[15px] leading-relaxed text-[var(--color-text-secondary)]">
-              نماذج من مسارات ITI و NTI و DEPI و MCIT — اسأل المساعد الذكي لتفاصيل أكتر.
+              {t("home.programPreviewBody")}
             </p>
           </div>
           <Link
             to="/programs"
             className="flex items-center gap-1.5 rounded-xl border border-[var(--color-border-soft)] px-4 py-2.5 text-sm font-semibold text-[var(--color-primary-dark)] transition-colors hover:bg-[var(--color-baby-blue)]"
           >
-            كل البرامج
+            {t("home.allPrograms")}
             <ArrowLeft size={15} />
           </Link>
         </div>

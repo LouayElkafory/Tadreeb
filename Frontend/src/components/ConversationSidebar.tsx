@@ -2,6 +2,7 @@ import { MessageSquarePlus, Trash2, MessageSquare } from "lucide-react";
 import Logo from "./Logo";
 import EmptyState from "./EmptyState";
 import type { Conversation } from "../types";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface ConversationSidebarProps {
   conversations: Conversation[];
@@ -18,6 +19,8 @@ export default function ConversationSidebar({
   onNew,
   onDelete,
 }: ConversationSidebarProps) {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col h-full bg-baby-blue/30">
       <div className="p-4 border-b border-soft-blue shrink-0">
@@ -29,15 +32,15 @@ export default function ConversationSidebar({
           className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition-colors shadow-sm"
         >
           <MessageSquarePlus size={17} />
-          محادثة جديدة
+          {t("chat.new")}
         </button>
       </div>
       <div className="flex-1 overflow-y-auto px-3 pb-4">
         {conversations.length === 0 ? (
           <EmptyState
             icon={<MessageSquare size={22} />}
-            title="لسه مفيش محادثات"
-            description="ابدأ محادثة جديدة عشان تشوفها هنا."
+            title={t("chat.emptyHistoryTitle")}
+            description={t("chat.emptyHistoryBody")}
           />
         ) : (
           <div className="space-y-1">
@@ -58,7 +61,7 @@ export default function ConversationSidebar({
                     conv.id === activeId ? "text-deep-navy font-semibold" : "text-text-secondary"
                   }`}
                 >
-                  {conv.title || "محادثة جديدة"}
+                  {conv.title || t("chat.defaultTitle")}
                 </span>
                 <button
                   onClick={(e) => {
@@ -66,7 +69,7 @@ export default function ConversationSidebar({
                     onDelete(conv.id);
                   }}
                   className="opacity-0 group-hover:opacity-100 p-1 rounded-md text-text-secondary hover:text-red-500 hover:bg-red-50 transition-all shrink-0"
-                  aria-label="حذف المحادثة"
+                  aria-label={t("chat.deleteConversation")}
                 >
                   <Trash2 size={14} />
                 </button>

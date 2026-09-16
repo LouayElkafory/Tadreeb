@@ -4,20 +4,19 @@ import { ShieldCheck } from 'lucide-react'
 import Navbar from './Navbar'
 import ChatInput from './ChatInput'
 import SuggestedQuestions from './SuggestedQuestions'
-import { useLanguage } from '@/context/LanguageContext'
-
-const suggestions = [
-  'إيه شروط التقديم في ITI؟',
-  'أنا خريج تجارة، إيه البرامج المناسبة ليا؟',
-  'هل التدريب مجاني؟',
-  'إيه أفضل مسار للـ AI؟',
-]
+import { useLanguage } from '@/hooks/useLanguage'
 
 export default function Hero() {
   const [imgFailed, setImgFailed] = useState(false)
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
   const { t } = useLanguage()
+  const suggestions = [
+    t('hero.suggestion.iti'),
+    t('hero.suggestion.business'),
+    t('hero.suggestion.free'),
+    t('hero.suggestion.ai'),
+  ]
 
   const goToChat = (message?: string) => {
     if (message) {
@@ -55,19 +54,19 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-3xl flex-col items-center justify-center px-5 pb-16 pt-32 text-center sm:pt-40">
         <span className="animate-fade-up mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-md">
           <ShieldCheck size={15} className="text-[var(--color-sky-blue)]" />
-          {t('hero_trust')}
+          {t('hero.trust')}
         </span>
 
         <h1 className="animate-fade-up text-balance text-3xl font-extrabold leading-[1.35] text-white [animation-delay:80ms] sm:text-4xl md:text-5xl">
-          {t('hero_headline')}
+          {t('hero.headline')}
         </h1>
 
         <p className="animate-fade-up mt-4 text-balance text-lg font-medium text-[var(--color-sky-blue)] [animation-delay:140ms] sm:text-xl">
-          {t('hero_subheadline')}
+          {t('hero.subheadline')}
         </p>
 
         <p className="animate-fade-up mt-3 max-w-xl text-balance text-[15px] leading-relaxed text-white/80 [animation-delay:200ms] sm:text-base">
-          {t('hero_support')}
+          {t('hero.body')}
         </p>
 
         <div className="animate-fade-up mt-8 w-full max-w-xl [animation-delay:260ms]">
@@ -77,7 +76,7 @@ export default function Hero() {
             onSubmit={handleSend}
             size="lg"
             autoFocus={false}
-            placeholder={t('hero_input_placeholder')}
+            placeholder={t('hero.placeholder')}
           />
         </div>
 
@@ -93,13 +92,13 @@ export default function Hero() {
             onClick={() => goToChat()}
             className="rounded-2xl bg-white px-6 py-3 text-[15px] font-bold text-[var(--color-primary-dark)] shadow-[0_15px_40px_-12px_rgba(255,255,255,0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-12px_rgba(255,255,255,0.6)]"
           >
-            {t('hero_cta_primary')}
+            {t('common.startChat')}
           </button>
           <button
             onClick={() => navigate('/programs')}
             className="rounded-2xl border border-white/30 bg-white/10 px-6 py-3 text-[15px] font-semibold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20"
           >
-            {t('hero_cta_secondary')}
+            {t('common.explorePrograms')}
           </button>
         </div>
       </div>

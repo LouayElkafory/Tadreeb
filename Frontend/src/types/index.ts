@@ -1,13 +1,15 @@
 export type SourceType = "official" | "government" | "document" | "community";
 export type Language = "ar" | "en";
+export type LocalizedText = Record<Language, string>;
+export type ProgramLevel = "beginner" | "intermediate" | "advanced";
 
 export interface Source {
   id: string;
-  title: string;
+  title: LocalizedText;
   url: string;
-  organization: string;
+  organization: LocalizedText;
   type: SourceType;
-  description?: string;
+  description?: LocalizedText;
 }
 
 export interface ChatMessage {
@@ -31,27 +33,27 @@ export interface Conversation {
 
 export interface Organization {
   id: string;
-  name: string;
+  name: LocalizedText;
   shortName: string;
-  description: string;
-  categories: string[];
+  description: LocalizedText;
+  categories: LocalizedText[];
   color: string;
 }
 
 export interface Program {
   id: string;
-  name: string;
+  name: LocalizedText;
   organization: string; // Organization id
   track: string;
-  level: "مبتدئ" | "متوسط" | "متقدم";
-  description: string;
+  level: ProgramLevel;
+  description: LocalizedText;
   skills?: string[];
 }
 
 export interface Track {
   id: string;
-  name: string;
-  description: string;
+  name: LocalizedText;
+  description: LocalizedText;
 }
 
 export type ChatApiResponse = {

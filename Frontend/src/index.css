@@ -4,19 +4,19 @@
   --font-arabic: "IBM Plex Sans Arabic", "Cairo", sans-serif;
   --font-latin: "Inter", sans-serif;
 
-  --color-primary: #1677E8;
-  --color-primary-dark: #0D47A1;
-  --color-deep-navy: #102B57;
-  --color-baby-blue: #EAF5FF;
-  --color-soft-blue: #DCEEFF;
-  --color-sky-blue: #8CCBFF;
-  --color-text-primary: #102B57;
-  --color-text-secondary: #61758D;
+  --color-primary: #38BDF8;
+  --color-primary-dark: #0EA5E9;
+  --color-deep-navy: #020617;
+  --color-baby-blue: #111827;
+  --color-soft-blue: #1F2937;
+  --color-sky-blue: #7DD3FC;
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #94A3B8;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #8CCBFF transparent;
+  scrollbar-color: #334155 transparent;
 }
 
 html {
@@ -26,7 +26,7 @@ html {
 body {
   font-family: var(--font-arabic);
   color: var(--color-text-primary);
-  background-color: #ffffff;
+  background-color: #050505;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -39,7 +39,7 @@ html[dir="ltr"] body {
   height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c3ddf7;
+  background: #334155;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track {
@@ -53,6 +53,57 @@ html[dir="ltr"] body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+.bg-white {
+  background-color: #0B1120;
+}
+
+.bg-white\/90 {
+  background-color: rgb(11 17 32 / 0.9);
+}
+
+.bg-white\/80 {
+  background-color: rgb(11 17 32 / 0.82);
+}
+
+.bg-white\/70 {
+  background-color: rgb(11 17 32 / 0.76);
+}
+
+.bg-white\/60 {
+  background-color: rgb(11 17 32 / 0.64);
+}
+
+.hover\:bg-white:hover,
+.hover\:bg-white\/60:hover {
+  background-color: #111827;
+}
+
+.text-deep-navy,
+.text-\[var\(--color-deep-navy\)\] {
+  color: #F8FAFC;
+}
+
+.text-primary-dark,
+.text-\[var\(--color-primary-dark\)\] {
+  color: #BAE6FD;
+}
+
+.bg-red-50 {
+  background-color: rgb(127 29 29 / 0.22);
+}
+
+.bg-red-100 {
+  background-color: rgb(127 29 29 / 0.3);
+}
+
+.bg-amber-100 {
+  background-color: rgb(120 53 15 / 0.28);
+}
+
+.border-red-100 {
+  border-color: rgb(127 29 29 / 0.45);
 }
 
 /* ---- animations ---- */
@@ -91,12 +142,12 @@ html[dir="ltr"] body {
 /* Markdown content inside AI messages */
 .prose-tadreeb p { margin: 0 0 0.75em; line-height: 1.9; }
 .prose-tadreeb p:last-child { margin-bottom: 0; }
-.prose-tadreeb strong { font-weight: 700; color: var(--color-deep-navy); }
+.prose-tadreeb strong { font-weight: 700; color: var(--color-text-primary); }
 .prose-tadreeb ul { margin: 0.5em 0; padding-inline-start: 1.4em; list-style: disc; }
 .prose-tadreeb ol { margin: 0.5em 0; padding-inline-start: 1.4em; list-style: decimal; }
 .prose-tadreeb li { margin: 0.25em 0; line-height: 1.85; }
 .prose-tadreeb a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
 .prose-tadreeb code { background: var(--color-baby-blue); padding: 0.1em 0.4em; border-radius: 6px; font-size: 0.9em; }
 .prose-tadreeb table { width: 100%; border-collapse: collapse; margin: 0.75em 0; font-size: 0.92em; }
-.prose-tadreeb th, .prose-tadreeb td { border: 1px solid #DCEEFF; padding: 0.5em 0.75em; text-align: start; }
+.prose-tadreeb th, .prose-tadreeb td { border: 1px solid var(--color-soft-blue); padding: 0.5em 0.75em; text-align: start; }
 .prose-tadreeb th { background: var(--color-baby-blue); font-weight: 700; }

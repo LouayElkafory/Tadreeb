@@ -1,5 +1,6 @@
 import { useRef, type KeyboardEvent } from "react";
-import { ArrowUp, Mic } from "lucide-react";
+import { ArrowUp } from "lucide-react";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface ChatInputProps {
   value: string;
@@ -16,11 +17,12 @@ export default function ChatInput({
   onChange,
   onSubmit,
   isLoading,
-  placeholder = "اكتب سؤالك عن التدريب...",
+  placeholder,
   size = "md",
   autoFocus = false,
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { dir, t } = useLanguage();
 
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -37,25 +39,15 @@ export default function ChatInput({
         isLarge ? "p-2.5" : "p-2"
       }`}
     >
-      <button
-        type="button"
-        className={`shrink-0 flex items-center justify-center rounded-full text-text-secondary hover:text-primary hover:bg-baby-blue transition-colors ${
-          isLarge ? "w-11 h-11" : "w-9 h-9"
-        }`}
-        aria-label="إدخال صوتي (قريبًا)"
-        tabIndex={-1}
-      >
-        <Mic size={isLarge ? 19 : 17} />
-      </button>
       <textarea
         ref={textareaRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder={placeholder}
+        placeholder={placeholder ?? t("chat.inputPlaceholder")}
         autoFocus={autoFocus}
         rows={1}
-        dir="rtl"
+        dir={dir}
         className={`flex-1 resize-none bg-transparent outline-none text-deep-navy placeholder:text-text-secondary/70 py-2.5 max-h-32 ${
           isLarge ? "text-base" : "text-sm"
         }`}
@@ -72,7 +64,7 @@ export default function ChatInput({
             ? "bg-primary text-white hover:bg-primary-dark shadow-sm"
             : "bg-baby-blue text-text-secondary/50 cursor-not-allowed"
         }`}
-        aria-label="إرسال"
+        aria-label={t("chat.send")}
       >
         <ArrowUp size={isLarge ? 19 : 17} />
       </button>

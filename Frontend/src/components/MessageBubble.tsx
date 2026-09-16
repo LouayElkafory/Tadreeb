@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import { Copy, Check, RefreshCw, ThumbsUp, ThumbsDown, AlertCircle } from "lucide-react";
 import type { ChatMessage } from "../types";
 import SuggestedQuestions from "./SuggestedQuestions";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface MessageBubbleProps {
   message: ChatMessage;
@@ -25,6 +26,7 @@ export default function MessageBubble({
   sourcesCount,
 }: MessageBubbleProps) {
   const [copied, setCopied] = useState(false);
+  const { t } = useLanguage();
 
   const handleCopy = async () => {
     try {
@@ -59,7 +61,7 @@ export default function MessageBubble({
           {message.isError && (
             <div className="flex items-center gap-2 mb-1.5 text-red-600 font-semibold text-xs">
               <AlertCircle size={14} />
-              حدث خطأ
+              {t("chat.errorLabel")}
             </div>
           )}
           <div className="prose-tadreeb">
@@ -72,8 +74,8 @@ export default function MessageBubble({
             <button
               onClick={handleCopy}
               className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-baby-blue transition-colors"
-              aria-label="نسخ"
-              title="نسخ"
+              aria-label={t("chat.copy")}
+              title={t("chat.copy")}
             >
               {copied ? <Check size={15} /> : <Copy size={15} />}
             </button>
@@ -81,8 +83,8 @@ export default function MessageBubble({
               <button
                 onClick={onRegenerate}
                 className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-baby-blue transition-colors"
-                aria-label="إعادة توليد الإجابة"
-                title="إعادة توليد"
+                aria-label={t("chat.regenerateAria")}
+                title={t("chat.regenerate")}
               >
                 <RefreshCw size={15} />
               </button>
@@ -96,8 +98,8 @@ export default function MessageBubble({
                       ? "text-primary bg-baby-blue"
                       : "text-text-secondary hover:text-primary hover:bg-baby-blue"
                   }`}
-                  aria-label="إعجاب"
-                  title="مفيد"
+                  aria-label={t("chat.like")}
+                  title={t("chat.helpful")}
                 >
                   <ThumbsUp size={15} />
                 </button>
@@ -108,8 +110,8 @@ export default function MessageBubble({
                       ? "text-red-500 bg-red-50"
                       : "text-text-secondary hover:text-red-500 hover:bg-red-50"
                   }`}
-                  aria-label="عدم إعجاب"
-                  title="غير مفيد"
+                  aria-label={t("chat.dislike")}
+                  title={t("chat.notHelpful")}
                 >
                   <ThumbsDown size={15} />
                 </button>
@@ -120,10 +122,10 @@ export default function MessageBubble({
                 onClick={onShowSources}
                 className="mr-1 flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium text-primary bg-baby-blue hover:bg-soft-blue transition-colors lg:hidden"
               >
-                {sourcesCount} مصادر
+                {t("chat.sourcesCount", { count: sourcesCount })}
               </button>
             )}
-            {copied && <span className="text-xs text-primary">تم النسخ</span>}
+            {copied && <span className="text-xs text-primary">{t("chat.copied")}</span>}
           </div>
         )}
 

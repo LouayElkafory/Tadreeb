@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { X } from "lucide-react";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface MobileDrawerProps {
   open: boolean;
@@ -10,6 +11,8 @@ interface MobileDrawerProps {
 }
 
 export default function MobileDrawer({ open, onClose, title, children, side = "start" }: MobileDrawerProps) {
+  const { t } = useLanguage();
+
   useEffect(() => {
     if (!open) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -38,7 +41,7 @@ export default function MobileDrawer({ open, onClose, title, children, side = "s
           <button
             onClick={onClose}
             className="p-2 rounded-lg hover:bg-baby-blue text-deep-navy"
-            aria-label="إغلاق"
+            aria-label={t("nav.closeMenu")}
           >
             <X size={20} />
           </button>
