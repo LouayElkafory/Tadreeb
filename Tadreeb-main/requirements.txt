@@ -1,0 +1,31 @@
+# Scraping
+requests
+beautifulsoup4
+selenium
+playwright
+pdfplumber
+PyMuPDF
+
+# Preprocessing
+pyarabic
+
+# RAG: Embeddings / Vector DB / LLM (Ollama - local)
+ollama
+chromadb
+sentence-transformers
+python-dotenv
+
+# Fine-tuning
+unsloth
+peft
+transformers
+datasets
+
+# App / API
+streamlit
+fastapi
+uvicorn
+
+# Evaluation
+pandas
+scikit-learn

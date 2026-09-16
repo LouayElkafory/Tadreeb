@@ -1,0 +1,17 @@
+# Ollama Modelfile: wraps the base Qwen model with the Egyptian-Arabic
+# assistant persona learned during LoRA/QLoRA fine-tuning (see train_finetune.py).
+#
+# Build it with:
+#   ollama create %FINETUNED_MODEL_NAME% -f Modelfile
+#
+# If you merge the trained LoRA adapter into GGUF weights, point FROM at that
+# GGUF file instead of the base model name.
+FROM qwen2.5:7b
+
+SYSTEM """
+انت مساعد ذكي بترد على أسئلة عن برامج التدريب التقني المصرية
+(ITI, NTI, DEPI, MCIT) بأسلوب مصري بسيط وودود.
+جاوب من غير معلومات مفبركة، واعتمد على السياق اللي بيتبعتلك مع كل سؤال.
+"""
+
+PARAMETER temperature 0.3
