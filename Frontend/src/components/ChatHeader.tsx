@@ -1,5 +1,4 @@
 import { PanelRight, PanelLeft, Plus, ShieldCheck } from "lucide-react";
-import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { useLanguage } from "../hooks/useLanguage";
 
@@ -23,9 +22,9 @@ export default function ChatHeader({ onOpenHistory, onToggleSources, onNewChat, 
         >
           <PanelLeft size={20} />
         </button>
-        <Link to="/" className="hidden sm:block shrink-0">
+        <div className="hidden sm:block shrink-0">
           <Logo />
-        </Link>
+        </div>
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <h1 className="text-sm sm:text-base font-bold text-deep-navy truncate">{t("chat.headerTitle")}</h1>

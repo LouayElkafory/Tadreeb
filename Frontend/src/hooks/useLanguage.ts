@@ -14,6 +14,8 @@ const translations: TranslationMap = {
   "nav.login": { ar: "دخول", en: "Log in" },
   "nav.switchTo": { ar: "English", en: "العربية" },
   "nav.switchAria": { ar: "تغيير اللغة", en: "Switch language" },
+  "theme.switchToLight": { ar: "التبديل للوضع الفاتح", en: "Switch to light mode" },
+  "theme.switchToDark": { ar: "التبديل للوضع الداكن", en: "Switch to dark mode" },
   "nav.openMenu": { ar: "فتح القائمة", en: "Open menu" },
   "nav.closeMenu": { ar: "إغلاق", en: "Close" },
 

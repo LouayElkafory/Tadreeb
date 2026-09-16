@@ -12,7 +12,7 @@ export default function ProgramCard({ program }: { program: Program }) {
   const programName = localize(program.name);
 
   return (
-    <div className="flex flex-col p-5 rounded-2xl border border-soft-blue bg-white hover:border-primary hover:shadow-lg hover:-translate-y-0.5 transition-all">
+    <div className="flex flex-col p-5 rounded-2xl border border-soft-blue bg-white hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
       <div className="flex items-center justify-between mb-3">
         <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-baby-blue text-primary-dark">
           {track ? localize(track.name) : ""}
@@ -34,14 +34,14 @@ export default function ProgramCard({ program }: { program: Program }) {
       <div className="flex items-center gap-2 mt-auto pt-1">
         <Link
           to={`/programs/${program.id}`}
-          className="flex-1 text-center px-3 py-2.5 rounded-xl text-sm font-semibold text-deep-navy bg-baby-blue hover:bg-soft-blue transition-colors"
+          className="flex-1 text-center px-3 py-2.5 rounded-xl text-sm font-semibold text-deep-navy bg-baby-blue hover:bg-soft-blue transition-all duration-300 active:scale-95"
         >
           {t("common.details")}
         </Link>
         <Link
           to="/chat"
           state={{ prefill: t("programs.cardAskPrompt", { program: programName }) }}
-          className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition-colors shrink-0"
+          className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition-all duration-300 active:scale-95 shrink-0"
           aria-label={t("programs.ask")}
         >
           <Sparkles size={14} />

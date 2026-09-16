@@ -45,7 +45,7 @@ export default function Sources() {
 
   return (
     <div className="max-w-6xl mx-auto px-5 py-14 sm:py-16">
-      <div className="text-center max-w-xl mx-auto mb-10">
+      <div className="animate-fade-up text-center max-w-xl mx-auto mb-10">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-deep-navy mb-4">{t("sources.title")}</h1>
         <p className="text-text-secondary text-base leading-relaxed">
           {t("sources.body")}
@@ -59,13 +59,13 @@ export default function Sources() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t("sources.search")}
-            className="w-full ps-11 pe-4 py-3 rounded-2xl border border-soft-blue bg-white focus:border-primary outline-none text-sm text-deep-navy placeholder:text-text-secondary/70"
+            className="w-full ps-11 pe-4 py-3 rounded-2xl border border-soft-blue bg-white focus:border-primary outline-none text-sm text-deep-navy placeholder:text-text-secondary/70 transition-colors"
           />
         </div>
         <select
           value={org ?? ""}
           onChange={(e) => setOrg(e.target.value || null)}
-          className="px-4 py-3 rounded-2xl border border-soft-blue bg-white text-sm text-deep-navy outline-none focus:border-primary"
+          className="px-4 py-3 rounded-2xl border border-soft-blue bg-white text-sm text-deep-navy outline-none focus:border-primary transition-colors"
         >
           <option value="">{t("common.allOrganizations")}</option>
           {organizations.map((o) => (

@@ -4,9 +4,23 @@
   --font-arabic: "IBM Plex Sans Arabic", "Cairo", sans-serif;
   --font-latin: "Inter", sans-serif;
 
+  /* Light theme is the default token set Tailwind uses to generate utilities. */
+  --color-primary: #1677E8;
+  --color-primary-dark: #0D47A1;
+  --color-deep-navy: #020617;
+  --color-baby-blue: #EAF5FF;
+  --color-soft-blue: #DCEEFF;
+  --color-sky-blue: #8CCBFF;
+  --color-text-primary: #102B57;
+  --color-text-secondary: #61758D;
+}
+
+/* Dark theme: override the same custom properties at runtime.
+   --color-deep-navy stays constant on purpose -- it's the Hero's cinematic
+   photo-overlay tint, not a text/background color, so it shouldn't flip. */
+:root[data-theme="dark"] {
   --color-primary: #38BDF8;
   --color-primary-dark: #0EA5E9;
-  --color-deep-navy: #020617;
   --color-baby-blue: #111827;
   --color-soft-blue: #1F2937;
   --color-sky-blue: #7DD3FC;
@@ -16,6 +30,10 @@
 
 * {
   scrollbar-width: thin;
+  scrollbar-color: #8CCBFF transparent;
+}
+
+:root[data-theme="dark"] * {
   scrollbar-color: #334155 transparent;
 }
 
@@ -26,8 +44,13 @@ html {
 body {
   font-family: var(--font-arabic);
   color: var(--color-text-primary);
-  background-color: #050505;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
+}
+
+:root[data-theme="dark"] body {
+  background-color: #050505;
 }
 
 html[dir="ltr"] body {
@@ -39,8 +62,11 @@ html[dir="ltr"] body {
   height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #c3ddf7;
   border-radius: 999px;
+}
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #334155;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -55,54 +81,57 @@ html[dir="ltr"] body {
   }
 }
 
-.bg-white {
+/* These Tailwind literal-color utilities (bg-white, text-deep-navy, ...) don't
+   reference our CSS variables, so in dark mode they're redirected here. Light
+   mode needs no overrides -- it's just Tailwind's own generated utilities. */
+:root[data-theme="dark"] .bg-white {
   background-color: #0B1120;
 }
 
-.bg-white\/90 {
+:root[data-theme="dark"] .bg-white\/90 {
   background-color: rgb(11 17 32 / 0.9);
 }
 
-.bg-white\/80 {
+:root[data-theme="dark"] .bg-white\/80 {
   background-color: rgb(11 17 32 / 0.82);
 }
 
-.bg-white\/70 {
+:root[data-theme="dark"] .bg-white\/70 {
   background-color: rgb(11 17 32 / 0.76);
 }
 
-.bg-white\/60 {
+:root[data-theme="dark"] .bg-white\/60 {
   background-color: rgb(11 17 32 / 0.64);
 }
 
-.hover\:bg-white:hover,
-.hover\:bg-white\/60:hover {
+:root[data-theme="dark"] .hover\:bg-white:hover,
+:root[data-theme="dark"] .hover\:bg-white\/60:hover {
   background-color: #111827;
 }
 
-.text-deep-navy,
-.text-\[var\(--color-deep-navy\)\] {
+:root[data-theme="dark"] .text-deep-navy,
+:root[data-theme="dark"] .text-\[var\(--color-deep-navy\)\] {
   color: #F8FAFC;
 }
 
-.text-primary-dark,
-.text-\[var\(--color-primary-dark\)\] {
+:root[data-theme="dark"] .text-primary-dark,
+:root[data-theme="dark"] .text-\[var\(--color-primary-dark\)\] {
   color: #BAE6FD;
 }
 
-.bg-red-50 {
+:root[data-theme="dark"] .bg-red-50 {
   background-color: rgb(127 29 29 / 0.22);
 }
 
-.bg-red-100 {
+:root[data-theme="dark"] .bg-red-100 {
   background-color: rgb(127 29 29 / 0.3);
 }
 
-.bg-amber-100 {
+:root[data-theme="dark"] .bg-amber-100 {
   background-color: rgb(120 53 15 / 0.28);
 }
 
-.border-red-100 {
+:root[data-theme="dark"] .border-red-100 {
   border-color: rgb(127 29 29 / 0.45);
 }
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X, Globe } from "lucide-react";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import { useLanguage } from "../hooks/useLanguage";
 
 const NAV_LINKS = [
@@ -47,6 +48,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
           </div>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle className="w-9 h-9" />
             <button
               onClick={toggleLanguage}
               className="hidden sm:flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-text-secondary hover:text-primary rounded-lg hover:bg-baby-blue transition-colors"
@@ -57,7 +59,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             </button>
             <Link
               to="/login"
-              className="hidden sm:inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary-dark rounded-full transition-colors shadow-sm"
+              className="hidden sm:inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary-dark rounded-full transition-all duration-300 active:scale-95 shadow-sm"
             >
               {t("nav.login")}
             </Link>
@@ -109,7 +111,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             <div className="mt-auto flex flex-col gap-2 pt-6 border-t border-soft-blue">
               <button
                 onClick={toggleLanguage}
-                className="flex items-center gap-2 px-4 py-3 rounded-xl text-base font-medium text-deep-navy hover:bg-baby-blue"
+                className="flex items-center gap-2 px-4 py-3 rounded-xl text-base font-medium text-deep-navy hover:bg-baby-blue transition-colors"
               >
                 <Globe size={18} />
                 {t("nav.switchTo")}
@@ -117,7 +119,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
               <Link
                 to="/login"
                 onClick={() => setOpen(false)}
-                className="text-center px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary"
+                className="text-center px-4 py-3 rounded-xl text-base font-semibold text-white bg-primary transition-all duration-300 active:scale-95"
               >
                 {t("nav.login")}
               </Link>

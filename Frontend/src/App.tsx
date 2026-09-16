@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./hooks/useLanguage";
+import { ThemeProvider } from "./hooks/useTheme";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Chat from "./pages/Chat";
@@ -14,23 +15,25 @@ import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/organizations" element={<Organizations />} />
-            <Route path="/organizations/:id" element={<OrganizationDetails />} />
-            <Route path="/programs" element={<Programs />} />
-            <Route path="/programs/:id" element={<ProgramDetails />} />
-            <Route path="/sources" element={<Sources />} />
-            <Route path="/assistant" element={<Assistant />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/organizations" element={<Organizations />} />
+              <Route path="/organizations/:id" element={<OrganizationDetails />} />
+              <Route path="/programs" element={<Programs />} />
+              <Route path="/programs/:id" element={<ProgramDetails />} />
+              <Route path="/sources" element={<Sources />} />
+              <Route path="/assistant" element={<Assistant />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

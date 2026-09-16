@@ -45,7 +45,9 @@ export default function Hero() {
           <FallbackBackdrop />
         )}
         {/* Gentle readability overlay — kept light to preserve the artwork */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-deep-navy)]/55 via-transparent to-[var(--color-deep-navy)]/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-deep-navy)]/60 via-[var(--color-deep-navy)]/30 to-[var(--color-deep-navy)]/75" />
+        {/* Soft focused scrim behind the text column, so the planet stays visible everywhere else */}
+        <div className="absolute inset-0 [background:radial-gradient(60%_55%_at_50%_46%,rgba(2,6,23,0.5),transparent_72%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--color-baby-blue)] to-transparent" />
       </div>
 
@@ -57,15 +59,15 @@ export default function Hero() {
           {t('hero.trust')}
         </span>
 
-        <h1 className="animate-fade-up text-balance text-3xl font-extrabold leading-[1.35] text-white [animation-delay:80ms] sm:text-4xl md:text-5xl">
+        <h1 className="animate-fade-up text-balance text-3xl font-extrabold leading-[1.35] text-white [animation-delay:80ms] [text-shadow:0_2px_24px_rgba(0,0,0,0.5)] sm:text-4xl md:text-5xl">
           {t('hero.headline')}
         </h1>
 
-        <p className="animate-fade-up mt-4 text-balance text-lg font-medium text-[var(--color-sky-blue)] [animation-delay:140ms] sm:text-xl">
+        <p className="animate-fade-up mt-4 text-balance text-lg font-medium text-[var(--color-sky-blue)] [animation-delay:140ms] [text-shadow:0_2px_16px_rgba(0,0,0,0.45)] sm:text-xl">
           {t('hero.subheadline')}
         </p>
 
-        <p className="animate-fade-up mt-3 max-w-xl text-balance text-[15px] leading-relaxed text-white/80 [animation-delay:200ms] sm:text-base">
+        <p className="animate-fade-up mt-3 max-w-xl text-balance text-[15px] leading-relaxed text-white/90 [animation-delay:200ms] [text-shadow:0_1px_12px_rgba(0,0,0,0.4)] sm:text-base">
           {t('hero.body')}
         </p>
 
@@ -90,13 +92,13 @@ export default function Hero() {
         <div className="animate-fade-up mt-9 flex flex-wrap items-center justify-center gap-3 [animation-delay:380ms]">
           <button
             onClick={() => goToChat()}
-            className="rounded-2xl bg-white px-6 py-3 text-[15px] font-bold text-[var(--color-primary-dark)] shadow-[0_15px_40px_-12px_rgba(255,255,255,0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-12px_rgba(255,255,255,0.6)]"
+            className="rounded-2xl bg-white px-6 py-3 text-[15px] font-bold text-[var(--color-primary-dark)] shadow-[0_15px_40px_-12px_rgba(255,255,255,0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-12px_rgba(255,255,255,0.6)] active:scale-95"
           >
             {t('common.startChat')}
           </button>
           <button
             onClick={() => navigate('/programs')}
-            className="rounded-2xl border border-white/30 bg-white/10 px-6 py-3 text-[15px] font-semibold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20"
+            className="rounded-2xl border border-white/30 bg-white/10 px-6 py-3 text-[15px] font-semibold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20 active:scale-95"
           >
             {t('common.explorePrograms')}
           </button>

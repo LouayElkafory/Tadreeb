@@ -7,7 +7,7 @@ export default function OrganizationCard({ org }: { org: Organization }) {
   const { localize, t } = useLanguage();
 
   return (
-    <div className="group relative flex flex-col p-6 rounded-2xl border border-soft-blue bg-white hover:border-primary hover:shadow-lg hover:-translate-y-0.5 transition-all">
+    <div className="group relative flex flex-col p-6 rounded-2xl border border-soft-blue bg-white hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
       <div
         className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm mb-4"
         style={{ backgroundColor: org.color }}
@@ -29,14 +29,14 @@ export default function OrganizationCard({ org }: { org: Organization }) {
       <div className="flex items-center gap-2 mt-auto">
         <Link
           to={`/organizations/${org.id}`}
-          className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold text-deep-navy bg-baby-blue hover:bg-soft-blue transition-colors"
+          className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold text-deep-navy bg-baby-blue hover:bg-soft-blue transition-all duration-300 active:scale-95"
         >
           {t("common.learnMore")}
         </Link>
         <Link
           to="/chat"
           state={{ prefill: t("organizations.askPrompt", { organization: org.shortName }) }}
-          className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition-colors"
+          className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary hover:bg-primary-dark transition-all duration-300 active:scale-95"
         >
           {t("common.askAi")}
           <ArrowLeft size={14} className="rtl:rotate-180" />
