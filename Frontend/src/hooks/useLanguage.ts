@@ -255,7 +255,7 @@ function format(template: string, values?: TranslationValues) {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
-  const dir = language === "ar" ? "rtl" : "ltr";
+  const dir: "rtl" | "ltr" = language === "ar" ? "rtl" : "ltr";
 
   useEffect(() => {
     document.documentElement.lang = language;
