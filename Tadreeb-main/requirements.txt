@@ -1,3 +1,8 @@
+# Full project (scraping + preprocessing + RAG + fine-tuning + eval) dependencies.
+# Deploying only the FastAPI backend? Use 06_app/requirements.txt instead - it's
+# the minimal set the API service actually needs and skips heavy fine-tuning/
+# scraping-only packages (unsloth, transformers, datasets, PyMuPDF, streamlit, ...).
+
 # Scraping
 requests
 beautifulsoup4

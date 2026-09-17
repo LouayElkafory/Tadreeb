@@ -113,6 +113,39 @@ pipeline.
 For a detailed file-by-file workflow, see
 [`09_docs/FILE_ORDER.md`](09_docs/FILE_ORDER.md).
 
+## Deployment
+
+The backend (`06_app`) and frontend (`Frontend`) deploy as two separate
+services, matching the existing architecture (Frontend/Vercel -> FastAPI
+backend -> RAG pipeline -> ChromaDB -> Qwen/Ollama).
+
+**Backend (any standard Python host - not a serverless function, since the
+LLM/embedding steps are long-running and stateful):**
+
+```bash
+uvicorn server:app --host 0.0.0.0 --port $PORT   # run from the project root
+```
+
+`server.py` exists because `06_app` starts with a digit and can't be used as
+a dotted module path (`uvicorn 06_app.main:app` is invalid). A `Procfile` at
+the project root already points hosts (Render/Railway/Heroku-style) at this
+command. Install `06_app/requirements.txt` for the backend service instead of
+the full project `requirements.txt` - it skips the scraping/fine-tuning-only
+packages.
+
+Required environment variables are listed in `.env.example`. In production, at
+minimum set:
+- `FRONTEND_ORIGIN` - the deployed frontend URL(s), comma-separated.
+- `VECTOR_DB_PATH` - a path on a persistent disk/volume. On hosts with an
+  ephemeral filesystem, a plain local path is wiped on every deploy/restart.
+- `AUTO_INDEX` - leave `false` in production; only set `true` for a
+  first-time/dev setup run against an empty vector store.
+
+**Frontend (Vercel):** set the project's Root Directory to `Frontend`, keep
+the default Vite build (`npm run build`, output `dist` - see
+`Frontend/vercel.json`), and set `VITE_API_URL` to the deployed backend URL
+and `VITE_USE_MOCK_API=false` in the Vercel project's environment variables.
+
 ## Data and Model Responsibilities
 
 Fine-tuning data should primarily teach response style, tone, and conversational

@@ -1,5 +1,12 @@
 """
 Shared ChromaDB config: one persistent local collection for all chunks.
+
+VECTOR_DB_PATH must point at storage that actually persists across restarts/
+deploys. Many hosting platforms (serverless functions, ephemeral containers)
+wipe the local filesystem on every deploy or cold start - on those, either
+mount a persistent disk/volume and point VECTOR_DB_PATH at it, or re-run
+embed_and_store.py as part of the deploy step (see AUTO_INDEX in 06_app/api.py
+for an opt-in, non-default alternative).
 """
 import os
 from pathlib import Path
@@ -15,12 +22,14 @@ COLLECTION_NAME = "tadreeb_chunks"
 
 
 def get_collection():
+    Path(VECTOR_DB_PATH).mkdir(parents=True, exist_ok=True)
     client = chromadb.PersistentClient(path=VECTOR_DB_PATH)
     return client.get_or_create_collection(COLLECTION_NAME)
 
 
 def reset_collection():
     """Drop and recreate the collection (needed when the embedding model/dimension changes)."""
+    Path(VECTOR_DB_PATH).mkdir(parents=True, exist_ok=True)
     client = chromadb.PersistentClient(path=VECTOR_DB_PATH)
     try:
         client.delete_collection(COLLECTION_NAME)
