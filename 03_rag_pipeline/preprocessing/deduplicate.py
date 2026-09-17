@@ -6,7 +6,9 @@ Reads and overwrites 02_data/03_processed/<org>_clean.jsonl in place.
 import json
 from pathlib import Path
 
-PROCESSED_FOLDER = "../../02_data/03_processed"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROCESSED_FOLDER = PROJECT_ROOT / "02_data" / "03_processed"
+
 
 
 def deduplicate_pages(pages: list[dict]) -> list[dict]:

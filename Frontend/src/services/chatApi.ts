@@ -11,26 +11,37 @@ function delay(ms: number) {
 
 export class ChatApiError extends Error {}
 
+export interface ChatHistoryTurn {
+  role: string;
+  content: string;
+}
+
 /**
- * Sends a user message to the Tadreeb AI backend (or a local mock)
- * and returns the assistant's answer, sources, and follow-up suggestions.
+ * Sends a user message to the Tadreeb AI backend (or local mock)
+ * along with previous conversation history turns for multi-turn memory.
  */
 export async function sendChatMessage(
   message: string,
   conversationId?: string,
-  language: Language = "ar"
+  language: Language = "ar",
+  history: ChatHistoryTurn[] = []
 ): Promise<ChatApiResponse> {
   if (USE_MOCK) {
     // Simulate network + "thinking" latency
-    await delay(900 + Math.random() * 700);
-    return generateMockResponse(message, language);
+    await delay(600 + Math.random() * 400);
+    return generateMockResponse(message, language, history);
   }
 
   try {
     const response = await fetch(`${API_URL}/api/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message, conversation_id: conversationId, language }),
+      body: JSON.stringify({
+        message,
+        conversation_id: conversationId,
+        language,
+        history,
+      }),
     });
 
     if (!response.ok) {

@@ -114,7 +114,12 @@ export function useChat() {
 
       setIsLoading(true);
       try {
-        const response = await sendChatMessage(trimmed, conversationId, language);
+        const currentConv = conversations.find((c) => c.id === conversationId);
+        const history = currentConv
+          ? currentConv.messages.map((m) => ({ role: m.role, content: m.content }))
+          : [];
+
+        const response = await sendChatMessage(trimmed, conversationId, language, history);
         const assistantMessage: ChatMessage = {
           id: makeId(),
           role: "assistant",
@@ -154,7 +159,7 @@ export function useChat() {
 
       return conversationId;
     },
-    [activeId, isLoading, language, setConversations, setActiveId, t]
+    [activeId, conversations, isLoading, language, setConversations, setActiveId, t]
   );
 
   const regenerateLast = useCallback(
@@ -167,13 +172,15 @@ export function useChat() {
       // remove trailing assistant message(s) after the last user message
       const lastUserIndex = conv.messages.map((m) => m.id).lastIndexOf(lastUserMessage.id);
       const trimmedMessages = conv.messages.slice(0, lastUserIndex + 1);
+      const history = trimmedMessages.slice(0, -1).map((m) => ({ role: m.role, content: m.content }));
+
       setConversations((prev) =>
         prev.map((c) => (c.id === conversationId ? { ...c, messages: trimmedMessages } : c))
       );
 
       setIsLoading(true);
       try {
-        const response = await sendChatMessage(lastUserMessage.content, conversationId, language);
+        const response = await sendChatMessage(lastUserMessage.content, conversationId, language, history);
         const assistantMessage: ChatMessage = {
           id: makeId(),
           role: "assistant",
@@ -195,6 +202,7 @@ export function useChat() {
     },
     [conversations, isLoading, language, setConversations]
   );
+
 
   return {
     conversations,

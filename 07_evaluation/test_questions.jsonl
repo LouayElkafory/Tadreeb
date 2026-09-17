@@ -1,0 +1,8 @@
+{"question": "إيه هي التراكات المتاحة في مبادرة DEPI؟", "expected_org": "depi", "expected_keywords": ["Software", "AI", "Data", "Security", "ERP"]}
+{"question": "تراك React Web Developer في DEPI عدد ساعاته كام؟", "expected_org": "depi", "expected_keywords": ["164"]}
+{"question": "إيه شروط التقديم في معهد تكنولوجيا المعلومات ITI؟", "expected_org": "iti", "expected_keywords": ["تفرغ", "اختبار", "مقابلة", "جامعة"]}
+{"question": "برامج التدريب في المعهد القومي للاتصالات NTI بتغطي إيه؟", "expected_org": "nti", "expected_keywords": ["شبكات", "اتصالات", "أمن", "Cisco"]}
+{"question": "هل تدريب ITI و NTI و DEPI مجاني ولا بمصاريف؟", "expected_org": "mcit", "expected_keywords": ["مجاني"]}
+{"question": "إيه مبادرات التدريب الصيفي في ITIDA؟", "expected_org": "itida", "expected_keywords": ["صيفي", "طلاب", "مهارات"]}
+{"question": "خريج تجارة يقدر يدخل مسارات إيه؟", "expected_org": "mcit", "expected_keywords": ["تحليل", "بيانات", "ERP"]}
+{"question": "ما هي الأوراق المطلوبة للتقديم؟", "expected_org": "iti", "expected_keywords": ["بطاقة", "تخرج", "تجنيد"]}

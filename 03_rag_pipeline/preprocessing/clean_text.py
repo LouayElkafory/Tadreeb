@@ -6,8 +6,10 @@ import json
 import re
 from pathlib import Path
 
-RAW_FOLDER = "../../02_data/01_raw"
-PROCESSED_FOLDER = "../../02_data/03_processed"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+RAW_FOLDER = PROJECT_ROOT / "02_data" / "01_raw"
+PROCESSED_FOLDER = PROJECT_ROOT / "02_data" / "03_processed"
+
 
 
 def clean_text(text: str) -> str:
@@ -29,13 +31,17 @@ def clean_pages(pages: list[dict]) -> list[dict]:
 
 if __name__ == "__main__":
     Path(PROCESSED_FOLDER).mkdir(parents=True, exist_ok=True)
+    org_pages: dict[str, list[dict]] = {}
     for raw_file in sorted(Path(RAW_FOLDER).glob("*/official/*_raw.jsonl")):
         org = raw_file.parents[1].name
         pages = [json.loads(line) for line in open(raw_file, "r", encoding="utf-8")]
         cleaned = clean_pages(pages)
+        org_pages.setdefault(org, []).extend(cleaned)
 
+    for org, pages in org_pages.items():
         output_path = Path(PROCESSED_FOLDER) / f"{org}_clean.jsonl"
         with open(output_path, "w", encoding="utf-8") as f:
-            for page in cleaned:
+            for page in pages:
                 f.write(json.dumps(page, ensure_ascii=False) + "\n")
-        print(f"Cleaned {len(cleaned)} pages -> {output_path}")
+        print(f"Cleaned {len(pages)} pages for {org} -> {output_path}")
+
