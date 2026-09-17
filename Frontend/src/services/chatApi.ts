@@ -3,7 +3,8 @@ import type { Language } from "../types";
 import { generateMockResponse } from "../data/mockChat";
 
 const USE_MOCK = import.meta.env.VITE_USE_MOCK_API !== "false";
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+// Strip any trailing slash so `${API_URL}/api/chat` never produces a double slash.
+const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/+$/, "");
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

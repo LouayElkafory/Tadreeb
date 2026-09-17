@@ -1,0 +1,16 @@
+# Dependencies for the deployable FastAPI backend only (06_app + the RAG/generation
+# modules it imports: 03_rag_pipeline/embeddings, 03_rag_pipeline/retrieval,
+# 05_generation). Scraping/fine-tuning/evaluation dependencies live in the
+# project-root requirements.txt and are not needed to run this service.
+
+# App / API
+fastapi
+uvicorn
+pydantic
+python-dotenv
+
+# RAG: Embeddings / Vector DB / LLM
+chromadb
+sentence-transformers
+ollama
+requests
