@@ -1,0 +1,217 @@
+================================================================================
+                    TADREEB PROJECT - QUICK START
+================================================================================
+
+PROJECT SETUP: ✅ COMPLETE
+
+All dependencies installed and ready to run!
+
+================================================================================
+                    HOW TO RUN (2 SIMPLE COMMANDS)
+================================================================================
+
+OPTION 1: Run the batch file (Windows)
+────────────────────────────────────────
+Double-click: RUN_PROJECT.bat
+This will automatically start both servers in new windows.
+
+
+OPTION 2: Manual setup (Recommended for development)
+────────────────────────────────────────────────────
+
+Step 1 - Open Terminal 1, run:
+    cd D:\project\Tadreeb-main\Tadreeb-main\Tadreeb-updated-tadreeb (1)\Tadreeb-updated-tadreeb\Tadreeb-main\06_app
+    python main.py
+
+    Wait for: "Uvicorn running on http://0.0.0.0:8000"
+
+Step 2 - Open Terminal 2, run:
+    cd D:\project\Tadreeb-main\Tadreeb-main\Tadreeb-updated-tadreeb (1)\Tadreeb-updated-tadreeb\Tadreeb-main\Frontend
+    npm run dev
+
+    Wait for: "Local: http://localhost:5173/"
+
+================================================================================
+                    ACCESS YOUR APPLICATION
+================================================================================
+
+Once both servers are running:
+
+🌐 FRONTEND (Main Application)
+   👉 http://localhost:5173/
+   This is where you interact with the chatbot
+
+🔌 BACKEND API (Development)
+   API Base: http://localhost:8000
+   Swagger Docs: http://localhost:8000/docs  ← Test API here
+   ReDoc: http://localhost:8000/redoc
+
+🏥 Health Check:
+   http://localhost:8000/health
+
+================================================================================
+                    WHAT WAS BUILT
+================================================================================
+
+📦 Complete RAG Pipeline (NEW - In 03_rag_pipeline/)
+   ✅ pdf_extractor.py    - PyMuPDF + PyPDF text extraction
+   ✅ chunking.py         - Overlapping sentence-aware chunking
+   ✅ embeddings.py       - Multilingual embeddings (384-dim)
+   ✅ retrieval.py        - FAISS vector database indexing
+   ✅ pipeline.py         - Complete orchestration
+   ✅ __init__.py         - Python package
+   ✅ requirements.txt    - Dependencies
+   ✅ README.md           - Full documentation
+   ✅ example.py          - Usage examples
+   ✅ test_components.py  - Unit tests
+   ✅ end_to_end_test.py  - Complete pipeline test
+
+🎨 Frontend Application
+   ✅ React + Vite
+   ✅ Tailwind CSS
+   ✅ Real-time chat interface
+   ✅ Source attribution
+   ✅ Responsive design
+
+🔌 FastAPI Backend
+   ✅ REST API endpoints
+   ✅ RAG integration
+   ✅ LLM generation (Qwen via Ollama)
+   ✅ CORS enabled
+
+================================================================================
+                    PROJECT STRUCTURE
+================================================================================
+
+Tadreeb-main/
+├── Frontend/                   # React App (Port 5173)
+│   ├── src/
+│   │   ├── components/         # React components
+│   │   ├── services/           # API services
+│   │   └── App.tsx
+│   └── package.json
+│
+├── 06_app/                     # FastAPI Backend (Port 8000)
+│   ├── api.py                 # Main API
+│   └── main.py                # Server entry
+│
+├── 03_rag_pipeline/            # ⭐ NEW RAG Pipeline
+│   ├── pdf_extractor.py
+│   ├── chunking.py
+│   ├── embeddings.py
+│   ├── retrieval.py
+│   ├── pipeline.py
+│   ├── indexes/                # Saved FAISS indexes
+│   └── requirements.txt
+│
+├── 05_generation/              # LLM Generation
+│   ├── generate_answer.py
+│   ├── prompt_templates.py
+│   └── ollama_client.py
+│
+├── 02_data/
+│   └── 01_raw/                 # PDF files for indexing
+│
+└── STARTUP_GUIDE.md            # Complete documentation
+
+================================================================================
+                    DEPENDENCIES STATUS
+================================================================================
+
+✅ Frontend Dependencies (npm)
+   - React 19.2.8
+   - Vite 8.3.0
+   - Tailwind CSS 4.3.3
+   - React Router 7.18.4
+
+✅ Backend Dependencies (pip)
+   - FastAPI 0.104.0+
+   - Uvicorn 0.24.0+
+   - sentence-transformers 3.0.0+
+   - faiss-cpu 1.8.0+
+   - PyMuPDF 1.24.0+
+   - langdetect 1.0.9+
+
+================================================================================
+                    USAGE EXAMPLES
+================================================================================
+
+Chat via Frontend:
+   1. Go to http://localhost:5173/
+   2. Type your question
+   3. Get answer with sources
+
+Chat via API (curl):
+   curl -X POST http://localhost:8000/api/chat \
+     -H "Content-Type: application/json" \
+     -d '{"message": "What are the requirements?"}'
+
+Using RAG Pipeline Directly:
+   from pipeline import RAGPipeline
+   pipeline = RAGPipeline.load_index("./indexes/test_index")
+   results = pipeline.retrieve("Your question", k=3)
+
+Testing RAG Components:
+   cd 03_rag_pipeline
+   python test_components.py
+
+Full End-to-End Test:
+   cd 03_rag_pipeline
+   python end_to_end_test.py
+
+================================================================================
+                    TROUBLESHOOTING
+================================================================================
+
+Q: Port 5173 already in use?
+A: cd Frontend && npm run dev -- --port 5174
+
+Q: Port 8000 already in use?
+A: Edit 06_app/main.py and change port, or:
+   uvicorn 06_app.api:app --reload --port 8001
+
+Q: Missing dependencies?
+A: pip install fastapi uvicorn pydantic pymupdf PyPDF \
+   sentence-transformers faiss-cpu numpy pandas langdetect
+
+Q: npm not found?
+A: Install Node.js from https://nodejs.org/
+
+Q: Frontend not connecting to API?
+A: Check that backend is running: curl http://localhost:8000/health
+
+Q: Cannot find PDFs for indexing?
+A: Add PDFs to: 02_data/01_raw/<organization>/official/
+
+================================================================================
+                    NEXT STEPS
+================================================================================
+
+1. ✅ Start both servers (see HOW TO RUN above)
+2. ✅ Open http://localhost:5173 in your browser
+3. ✅ Ask questions in the chat interface
+4. ✅ Explore API docs at http://localhost:8000/docs
+5. ✅ Check out the complete guide: STARTUP_GUIDE.md
+
+================================================================================
+                    FEATURES
+================================================================================
+
+✨ Multilingual Support (English & Arabic)
+✨ Smart PDF Extraction & Cleaning
+✨ Context-Aware Text Chunking (900 chars + 150 overlap)
+✨ Fast Semantic Search (FAISS with L2 distance)
+✨ Real-Time Chat Interface
+✨ Source Attribution
+✨ Conversation History
+✨ Mobile Responsive Design
+✨ API Documentation (Swagger + ReDoc)
+✨ Production-Ready Code
+
+================================================================================
+
+Happy coding! 🚀
+
+For more details, see STARTUP_GUIDE.md
+
+================================================================================

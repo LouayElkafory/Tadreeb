@@ -1,0 +1,335 @@
+{
+  "test_suite": "Tadreeb Faiss RAG API - 20 Test Cases",
+  "api_url": "http://localhost:8001/api/chat",
+  "test_cases": [
+    {
+      "test_id": 1,
+      "category": "Program Overview",
+      "language": "English",
+      "request": {
+        "message": "What is the HireReady program?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["HireReady", "program", "training"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Basic program overview question in English"
+    },
+    {
+      "test_id": 2,
+      "category": "Program Overview",
+      "language": "Arabic",
+      "request": {
+        "message": "ما هي مبادرة رواد مصر الرقمية؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["مصر", "رقمية", "مبادرة"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Program overview in Egyptian Arabic"
+    },
+    {
+      "test_id": 3,
+      "category": "Eligibility",
+      "language": "English",
+      "request": {
+        "message": "What are the eligibility criteria?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["eligible", "criteria", "requirement"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Check eligibility requirements"
+    },
+    {
+      "test_id": 4,
+      "category": "Eligibility",
+      "language": "Arabic",
+      "request": {
+        "message": "ما هي شروط التقديم في البرنامج؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["شروط", "تقديم", "برنامج"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Application conditions in Arabic"
+    },
+    {
+      "test_id": 5,
+      "category": "Duration & Schedule",
+      "language": "English",
+      "request": {
+        "message": "How long is the training program?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["duration", "weeks", "months", "hours"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Duration and schedule information"
+    },
+    {
+      "test_id": 6,
+      "category": "Duration & Schedule",
+      "language": "Arabic",
+      "request": {
+        "message": "كام ساعة التدريب يومياً؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["ساعة", "يومي", "يوم"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Daily training hours in Arabic"
+    },
+    {
+      "test_id": 7,
+      "category": "Tracks & Specializations",
+      "language": "English",
+      "request": {
+        "message": "What are the available training tracks?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["track", "program", "specialization"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "List of available tracks"
+    },
+    {
+      "test_id": 8,
+      "category": "Tracks & Specializations",
+      "language": "Arabic",
+      "request": {
+        "message": "إيه التراكات المتاحة في البرنامج؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["تراك", "تخصص", "برنامج"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Available specializations in Egyptian Arabic"
+    },
+    {
+      "test_id": 9,
+      "category": "Employment & Placement",
+      "language": "English",
+      "request": {
+        "message": "Does the program help with job placement?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["placement", "job", "employment", "partner"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Job placement assistance query"
+    },
+    {
+      "test_id": 10,
+      "category": "Employment & Placement",
+      "language": "Arabic",
+      "request": {
+        "message": "هل في مساعدة في إيجاد وظيفة بعد التدريب؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["وظيفة", "عمل", "توظيف"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Post-training job assistance in Arabic"
+    },
+    {
+      "test_id": 11,
+      "category": "Fees & Costs",
+      "language": "English",
+      "request": {
+        "message": "Is the training free?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["free", "fee", "cost", "scholarship"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Training costs and fees"
+    },
+    {
+      "test_id": 12,
+      "category": "Fees & Costs",
+      "language": "Arabic",
+      "request": {
+        "message": "هل البرنامج مجاني؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["مجاني", "رسوم", "تكلفة"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Program cost in Arabic"
+    },
+    {
+      "test_id": 13,
+      "category": "Application & Dates",
+      "language": "English",
+      "request": {
+        "message": "When is the application deadline?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["deadline", "application", "date", "open"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Application deadline inquiry"
+    },
+    {
+      "test_id": 14,
+      "category": "Application & Dates",
+      "language": "Arabic",
+      "request": {
+        "message": "متى موعد التقديم في البرنامج؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["موعد", "تقديم", "تاريخ"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Application timing in Arabic"
+    },
+    {
+      "test_id": 15,
+      "category": "Prerequisites & Skills",
+      "language": "English",
+      "request": {
+        "message": "What skills do I need before joining?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["skill", "requirement", "prerequisite", "knowledge"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Required skills and prerequisites"
+    },
+    {
+      "test_id": 16,
+      "category": "Prerequisites & Skills",
+      "language": "Arabic",
+      "request": {
+        "message": "ما المهارات اللي أحتاجها عشان أتقدم؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["مهارة", "متطلب", "معرفة"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Required skills in Egyptian Arabic"
+    },
+    {
+      "test_id": 17,
+      "category": "Attendance & Commitment",
+      "language": "English",
+      "request": {
+        "message": "Are employees allowed to participate?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["employee", "employment", "commitment", "attendance"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Employment status eligibility"
+    },
+    {
+      "test_id": 18,
+      "category": "Attendance & Commitment",
+      "language": "Arabic",
+      "request": {
+        "message": "هل الموظفين ممكن يشتركوا في البرنامج؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["موظف", "عمل", "التزام"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Employee participation in Arabic"
+    },
+    {
+      "test_id": 19,
+      "category": "Contact & Support",
+      "language": "English",
+      "request": {
+        "message": "How do I contact the program administrators?",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["contact", "phone", "email", "support"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Contact information request"
+    },
+    {
+      "test_id": 20,
+      "category": "Contact & Support",
+      "language": "Arabic",
+      "request": {
+        "message": "ما رقم التواصل مع البرنامج؟",
+        "conversation_id": null
+      },
+      "expected": {
+        "chunk_count": 3,
+        "contains_keywords": ["رقم", "تواصل", "هاتف", "ايميل"],
+        "min_avg_score": 0.002,
+        "should_have_sources": true
+      },
+      "description": "Contact number in Arabic"
+    }
+  ],
+  "test_execution_script": "python test_runner.py",
+  "notes": [
+    "All tests expect 3 chunks to be returned",
+    "Tests cover 10 different categories",
+    "Tests are bilingual (English & Arabic)",
+    "Each test has expected keywords for validation",
+    "Minimum average similarity score is 0.002",
+    "All tests should return valid JSON with sources"
+  ]
+}

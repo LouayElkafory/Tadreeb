@@ -1,0 +1,231 @@
+{
+  "timestamp": "2026-09-17T03:08:24.056137",
+  "summary": {
+    "total": 20,
+    "passed": 20,
+    "failed": 0,
+    "pass_rate": "100%"
+  },
+  "results": [
+    {
+      "test_id": 1,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Program",
+      "message": "What is the HireReady program?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.00328844110481441,
+      "response_time": 2.022883
+    },
+    {
+      "test_id": 2,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Program",
+      "message": "\u0645\u0627 \u0647\u064a \u0645\u0628\u0627\u062f\u0631\u0629 \u0631\u0648\u0627\u062f \u0645\u0635\u0631 \u0627\u0644\u0631\u0642\u0645\u064a\u0629\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.002529280803476771,
+      "response_time": 2.157892
+    },
+    {
+      "test_id": 3,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Eligibility",
+      "message": "What are the eligibility criteria?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0029219600837677717,
+      "response_time": 2.073276
+    },
+    {
+      "test_id": 4,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Eligibility",
+      "message": "\u0645\u0627 \u0647\u064a \u0634\u0631\u0648\u0637 \u0627\u0644\u062a\u0642\u062f\u064a\u0645\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.002692079326758782,
+      "response_time": 2.042375
+    },
+    {
+      "test_id": 5,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Duration",
+      "message": "How long is the training?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0027813565296431384,
+      "response_time": 2.049699
+    },
+    {
+      "test_id": 6,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Duration",
+      "message": "\u0643\u0627\u0645 \u0633\u0627\u0639\u0629 \u0627\u0644\u062a\u062f\u0631\u064a\u0628 \u064a\u0648\u0645\u064a\u0627\u064b\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.00278508352736632,
+      "response_time": 2.226655
+    },
+    {
+      "test_id": 7,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Tracks",
+      "message": "What are the available tracks?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0024174628779292107,
+      "response_time": 2.060191
+    },
+    {
+      "test_id": 8,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Tracks",
+      "message": "\u0625\u064a\u0647 \u0627\u0644\u062a\u0631\u0627\u0643\u0627\u062a \u0627\u0644\u0645\u062a\u0627\u062d\u0629\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0026584711546699205,
+      "response_time": 2.142488
+    },
+    {
+      "test_id": 9,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Jobs",
+      "message": "Does it help with job placement?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0026669166206071773,
+      "response_time": 2.053854
+    },
+    {
+      "test_id": 10,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Jobs",
+      "message": "\u0647\u0644 \u0641\u064a \u0645\u0633\u0627\u0639\u062f\u0629 \u0641\u064a \u0625\u064a\u062c\u0627\u062f \u0648\u0638\u064a\u0641\u0629\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0025072211865335703,
+      "response_time": 2.043605
+    },
+    {
+      "test_id": 11,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Fees",
+      "message": "Is the training free?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0025066455515722432,
+      "response_time": 2.015522
+    },
+    {
+      "test_id": 12,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Fees",
+      "message": "\u0647\u0644 \u0627\u0644\u0628\u0631\u0646\u0627\u0645\u062c \u0645\u062c\u0627\u0646\u064a\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0024226546132316193,
+      "response_time": 2.0621
+    },
+    {
+      "test_id": 13,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Dates",
+      "message": "When is the deadline?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0023793876947214208,
+      "response_time": 2.027611
+    },
+    {
+      "test_id": 14,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Dates",
+      "message": "\u0645\u062a\u0649 \u0645\u0648\u0639\u062f \u0627\u0644\u062a\u0642\u062f\u064a\u0645\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0025505547722180686,
+      "response_time": 2.052298
+    },
+    {
+      "test_id": 15,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Skills",
+      "message": "What skills are needed?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0030170314324398837,
+      "response_time": 2.055979
+    },
+    {
+      "test_id": 16,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Skills",
+      "message": "\u0645\u0627 \u0627\u0644\u0645\u0647\u0627\u0631\u0627\u062a \u0627\u0644\u0644\u064a \u0623\u062d\u062a\u0627\u062c\u0647\u0627\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0024854837295909724,
+      "response_time": 2.151875
+    },
+    {
+      "test_id": 17,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Employees",
+      "message": "Can employees participate?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0023010398726910353,
+      "response_time": 2.122056
+    },
+    {
+      "test_id": 18,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Employees",
+      "message": "\u0647\u0644 \u0627\u0644\u0645\u0648\u0638\u0641\u064a\u0646 \u0645\u0645\u0643\u0646 \u064a\u0634\u062a\u0631\u0643\u0648\u0627\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.002558683122818669,
+      "response_time": 2.160853
+    },
+    {
+      "test_id": 19,
+      "status": "PASS",
+      "language": "EN",
+      "category": "Contact",
+      "message": "How do I contact?",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.002301476507758101,
+      "response_time": 2.074779
+    },
+    {
+      "test_id": 20,
+      "status": "PASS",
+      "language": "AR",
+      "category": "Contact",
+      "message": "\u0645\u0627 \u0631\u0642\u0645 \u0627\u0644\u062a\u0648\u0627\u0635\u0644\u061f",
+      "chunks": 3,
+      "sources": 3,
+      "avg_score": 0.0024245833046734333,
+      "response_time": 2.118633
+    }
+  ]
+}
