@@ -25,10 +25,79 @@ interface Rule {
 
 const rules: Rule[] = [
   {
-    keywords: ["iti", "شروط", "تقديم", "requirements", "admission", "apply"],
+    keywords: ["ازيك", "عامل ايه", "أهلاً", "اهلا", "مرحبا", "صباح الخير", "مساء الخير", "hello", "hi", "hey"],
     answer: {
-      ar: "بشكل عام، التقديم في **ITI** بيكون متاح لخريجي الجامعات وطلاب السنة النهائية في تخصصات مرتبطة بالحاسب والهندسة والعلوم.\n\nالخطوات الأساسية بتشمل:\n\n1. التسجيل من خلال الموقع الرسمي في فترة التقديم المعلنة\n2. اجتياز اختبار تحديد المستوى\n3. اجتياز المقابلة الشخصية\n\nلو عايز تعرف تفاصيل أكتر عن برنامج معين أو موعد التقديم القادم، قولي وهدور لك في المصادر.",
-      en: "In general, **ITI** applications are available for university graduates and final-year students in computer science, engineering, science, and related fields.\n\nThe basic steps usually include:\n\n1. Registering through the official website during the announced application period\n2. Passing a placement or admission test\n3. Passing the personal interview\n\nIf you want details about a specific program or the next application window, tell me and I will check the sources.",
+      ar: "أهلاً بك! أنا **مساعد تدريب الذكي** 👋. أقدر أساعدك تستكشف وتعرف كل تفاصيل برامج التدريب التقني في مصر زي **ITI**، **NTI**، **DEPI**، و**MCIT** (شروط التقديم، المسارات، مدة التدريب، والأوراق المطلوبة). تحب تسأل عن إيه؟",
+      en: "Hello! I am **Tadreeb AI Assistant** 👋. I can help you explore technical training opportunities in Egypt like **ITI**, **NTI**, **DEPI**, and **MCIT** (admission requirements, tracks, duration, and documents). What would you like to know?",
+    },
+    sourceIds: ["src-1", "src-2"],
+    suggestions: {
+      ar: ["إيه البرامج المناسبة ليا؟", "احكيلي عن برامج NTI", "إيه شروط التقديم في ITI؟", "هل التدريب مجاني؟"],
+      en: ["Which programs fit me?", "Tell me about NTI programs", "What are ITI admission requirements?", "Is training free?"],
+    },
+  },
+  {
+    keywords: ["nti", "المعهد القومي للاتصالات", "القومي للاتصالات"],
+    answer: {
+      ar: "المعهد القومي للاتصالات (**NTI**) هو جهة تدريبية حكومية تابعة لوزارة الاتصالات وتكنولوجيا المعلومات، بيقدم برامج متخصصة في:\n\n- **الشبكات وهندسة الاتصالات** (Cisco, 5G, Fiber Optics)\n- **الأمن السيبراني** (Cybersecurity Fundamentals & Operations)\n- **الحوسبة السحابية والأنظمة المدمجة (Embedded Systems)**\n\n**شروط التقديم:** خريجو كليات الهندسة، الحاسبات والمعلومات، والعلوم، والتخصصات ذات الصلة، والتقديم متاح من خلال موقع المعهد الرسمي.",
+      en: "The National Telecommunication Institute (**NTI**) is an institute under the Ministry of Communications specializing in:\n\n- **Networks and Telecom Engineering** (Cisco, 5G, Fiber Optics)\n- **Cybersecurity** (Fundamentals & Operations)\n- **Cloud Computing & Embedded Systems**\n\n**Admission:** Graduates in Engineering, Computer Science, Science, and related degrees via the official NTI portal.",
+    },
+    sourceIds: ["src-4", "src-6"],
+    suggestions: {
+      ar: ["إيه تراكات NTI المتاحة؟", "طب إيه الأوراق المطلوبة لـ NTI؟", "هل في اختبار قبول في NTI؟", "مدة التدريب في NTI كام؟"],
+      en: ["What NTI tracks are available?", "What documents are required for NTI?", "Is there an NTI admission test?", "How long is NTI training?"],
+    },
+  },
+  {
+    keywords: ["depi", "رواد مصر الرقمية", "ديبي"],
+    answer: {
+      ar: "مبادرة **رواد مصر الرقمية (DEPI)** هي مبادرة تابعة لوزارة الاتصالات بتقدم 6 تراكات رئيسية بالتعاون مع شركات عالمية:\n\n1. **Software Development** (DevOps, React, .NET, Testing)\n2. **AI & Data Science**\n3. **Data Analytics**\n4. **Digital Arts & Design**\n5. **Infrastructure & Cybersecurity**\n6. **Management & ERP (SAP, CRM)**\n\nالتدريب مجاني ومتاح لطلاب السنوات النهائية والخريجين من مختلف الجامعات المصرية.",
+      en: "**Digital Egypt Pioneers Initiative (DEPI)** offers 6 main tracks with global industry leaders:\n\n1. **Software Development** (DevOps, React, .NET, QA)\n2. **AI & Data Science**\n3. **Data Analytics**\n4. **Digital Arts & Design**\n5. **Infrastructure & Cybersecurity**\n6. **Management & ERP (SAP, CRM)**\n\nTraining is free for final-year students and university graduates.",
+    },
+    sourceIds: ["src-3"],
+    suggestions: {
+      ar: ["إيه شروط القبول في DEPI؟", "كام ساعة تدريب في تراك React في DEPI؟", "هل التدريب في DEPI أونلاين ولا حضور؟"],
+      en: ["What are DEPI admission requirements?", "How many hours is React track in DEPI?", "Is DEPI online or offline?"],
+    },
+  },
+  {
+    keywords: ["iti", "معهد تكنولوجيا المعلومات"],
+    answer: {
+      ar: "معهد تكنولوجيا المعلومات (**ITI**) بيقدم أشهر وأقوى المنح التدريبية المتخصصة في مصر، وأبرزها:\n\n- **منحة الـ 9 شهور الاحترافية** (Professional Training Program)\n- **منحة الـ 3 شهور المكثفة** (Intensive Code Camp)\n- **مبادرات التدريب الصيفي وسفراء التكنولوجيا**\n\n**شروط القبول:** تفرغ كامل، اجتياز اختبارات القبول (IQ، English، Technical)، واجتياز المقابلة الشخصية.",
+      en: "**Information Technology Institute (ITI)** provides leading tech scholarships in Egypt, including:\n\n- **9-Month Professional Training Program**\n- **3-Month Intensive Code Camp**\n- **Summer training & University initiatives**\n\n**Requirements:** Full-time dedication, passing admission exams (IQ, English, Tech), and personal interview.",
+    },
+    sourceIds: ["src-1"],
+    suggestions: DEFAULT_SUGGESTIONS,
+  },
+  {
+    keywords: ["مدة", "كام شهر", "ساعات", "كام ساعة", "duration", "how long", "hours"],
+    answer: {
+      ar: "تختلف مدة التدريب حسب كل جهة وبرنامج:\n\n- **ITI:** تتراوح بين **3 شهور** (المعسكرات المكثفة) إلى **9 شهور** (البرنامج الاحترافي الشامل).\n- **NTI:** تتراوح البرامج بين **شهرين إلى 4 شهور** تدريب مكثف (حوالي 120 إلى 240 ساعة).\n- **DEPI:** برامج ممتدة على مدار **6 شهور** مقسمة على مراحل تدريبية وتطبيق عملي.",
+      en: "Training duration depends on the institution and program:\n\n- **ITI:** Ranges from **3 months** (Intensive Code Camp) to **9 months** (Professional Diploma).\n- **NTI:** Typically **2 to 4 months** of intensive training (120 - 240 hours).\n- **DEPI:** **6-month** structured programs with practical projects.",
+    },
+    sourceIds: ["src-1", "src-3", "src-4"],
+    suggestions: {
+      ar: ["هل التدريب صباحي ولا مسائي؟", "هل الحضور إجباري؟", ...DEFAULT_SUGGESTIONS.ar.slice(0, 2)],
+      en: ["Are classes morning or evening?", "Is attendance mandatory?", ...DEFAULT_SUGGESTIONS.en.slice(0, 2)],
+    },
+  },
+  {
+    keywords: ["ورق", "اوراق", "أوراق", "مستندات", "documents", "papers", "requirements documents"],
+    answer: {
+      ar: "الأوراق والمستندات المطلوبة للتقديم غالباً ما تشمل:\n\n1. صورة بطاقة الرقم القومي (سارية)\n2. أصل أو صورة طبق الأصل من شهادة التخرج\n3. شهادة الموقف من التجنيد (للذكور)\n4. السيرة الذاتية (CV) الحديثة\n5. صور شخصية حديثة\n6. بيان درجات تراكمي (في بعض البرامج المتخصصة)",
+      en: "Typical required application documents include:\n\n1. Valid National ID copy\n2. Graduation Certificate / Degree transcript\n3. Military status certificate (for males)\n4. Updated Resume / CV\n5. Recent personal photos\n6. Academic transcript (for specific programs)",
+    },
+    sourceIds: ["src-1", "src-6"],
+    suggestions: {
+      ar: ["هل في اختبار قبول؟", "إمتى التقديم القادم؟", "هل التدريب مجاني؟"],
+      en: ["Is there an admission exam?", "When is the next round?", "Is training free?"],
+    },
+  },
+  {
+    keywords: ["امتحان", "اختبار", "انترفيو", "مقابلة", "interview", "test", "exam"],
+    answer: {
+      ar: "نعم، معظم البرامج تشتمل على مراحل تقييم لضمان الجدية والجاهزية:\n\n1. **اختبار لغة إنجليزية (English Test):** لتقييم مهارات القراءة والاستيعاب.\n2. **اختبار قدرات وذكاء (IQ Test):** للتفكير المنطقي وحل المشكلات.\n3. **اختبار تقني أساسي (Technical Test):** في أساسيات المسار المختار.\n4. **مقابلة شخصية (Soft Skills / Technical Interview):** للتعرف على أهدافك والتزامك.",
+      en: "Yes, most programs involve admission screening steps:\n\n1. **English Assessment Test**\n2. **Logical Thinking & IQ Test**\n3. **Basic Technical Assessment**\n4. **Personal & Technical Interview**",
     },
     sourceIds: ["src-1", "src-6"],
     suggestions: DEFAULT_SUGGESTIONS,
@@ -36,32 +105,32 @@ const rules: Rule[] = [
   {
     keywords: ["مجاني", "فلوس", "رسوم", "تكلفة", "free", "fees", "cost", "paid"],
     answer: {
-      ar: "أغلب البرامج التدريبية اللي بتقدمها جهات زي **ITI** و**NTI** و**DEPI** مجانية للطلاب المقبولين، لأنها جزء من مبادرات لدعم التحول الرقمي وتنمية المهارات.\n\nمع ذلك، بعض البرامج المتخصصة أو الشراكات مع شركات معينة ممكن يكون ليها شروط مختلفة، فالأفضل دايما تتأكد من صفحة البرنامج قبل التقديم.",
-      en: "Most training programs offered by institutions such as **ITI**, **NTI**, and **DEPI** are free for accepted learners because they are part of national digital skills initiatives.\n\nSome specialized programs or company partnerships may have different conditions, so it is always best to confirm on the program page before applying.",
+      ar: "أغلب البرامج التدريبية التي تقدمها **ITI** و**NTI** و**DEPI** و**MCIT** هي **منح مجانية تماماً بالكامل (100%)** ممولة من وزارة الاتصالات وتكنولوجيا المعلومات لدعم وتمكين الكوادر والشباب في مصر.",
+      en: "Most programs offered by **ITI**, **NTI**, **DEPI**, and **MCIT** are **100% free government scholarships** funded by the Ministry of Communications and Information Technology.",
     },
     sourceIds: ["src-2", "src-3"],
     suggestions: {
-      ar: ["إيه البرامج المجانية المتاحة؟", "هل التدريب المجاني بيدي شهادة معتمدة؟", ...DEFAULT_SUGGESTIONS.ar.slice(0, 2)],
-      en: ["Which free programs are available?", "Does free training include a certificate?", ...DEFAULT_SUGGESTIONS.en.slice(0, 2)],
+      ar: ["إيه البرامج المتاحة حالياً؟", "هل التدريب بيدي شهادة معتمدة؟", ...DEFAULT_SUGGESTIONS.ar.slice(0, 2)],
+      en: ["Which programs are available?", "Does training include a certificate?", ...DEFAULT_SUGGESTIONS.en.slice(0, 2)],
     },
   },
   {
     keywords: ["ذكاء اصطناعي", "ai", "تعلم الآلة", "artificial intelligence", "machine learning"],
     answer: {
-      ar: "لو مهتم بمسار **الذكاء الاصطناعي**، في أكتر من خيار حسب مستواك:\n\n- **للمبتدئين:** برامج تمهيدية في أساسيات البرمجة وتحليل البيانات\n- **للمتوسط:** مسارات في تعلم الآلة وPython\n- **للمتقدم:** برامج متخصصة في التعلم العميق ومعالجة اللغة الطبيعية\n\nبرنامج **ITI للذكاء الاصطناعي المتقدم** من أشهر أمثلة المسار المتقدم.",
-      en: "If you are interested in **Artificial Intelligence**, there are options depending on your current level:\n\n- **Beginner:** foundations in programming and data analysis\n- **Intermediate:** machine learning and Python tracks\n- **Advanced:** deep learning and natural language processing programs\n\nThe **ITI Advanced Artificial Intelligence Program** is one of the well-known advanced examples.",
+      ar: "لو مهتم بمسار **الذكاء الاصطناعي (AI & Data Science)**، في خيارات ممتازة:\n\n- **DEPI:** مسار AI & Data Science بالتعاون مع جهات عالمية لتعلم Python، Machine Learning، والـ Deep Learning.\n- **ITI:** دبلومة الذكاء الاصطناعي وتعلم الآلة الشاملة (9 شهور أو 3 شهور).\n- **NTI:** مسارات تحليل البيانات وتعلم الآلة التطبيقي.",
+      en: "For **Artificial Intelligence & Data Science**, top pathways include:\n\n- **DEPI:** AI & Data Science track with industry leaders covering Python, ML, and Deep Learning.\n- **ITI:** Comprehensive AI diploma (9 months or 3 months intensive).\n- **NTI:** Applied Machine Learning and Data Analysis tracks.",
     },
     sourceIds: ["src-1", "src-3"],
     suggestions: {
-      ar: ["إيه المهارات المطلوبة قبل البدء؟", "إيه الفرق بين ML و Deep Learning؟", ...DEFAULT_SUGGESTIONS.ar.slice(0, 2)],
-      en: ["What skills do I need before starting?", "What is the difference between ML and deep learning?", ...DEFAULT_SUGGESTIONS.en.slice(0, 2)],
+      ar: ["إيه المهارات المطلوبة قبل البدء؟", "إيه الفرق بين Data Science و AI؟", ...DEFAULT_SUGGESTIONS.ar.slice(0, 2)],
+      en: ["What skills do I need before starting?", "Difference between Data Science & AI?", ...DEFAULT_SUGGESTIONS.en.slice(0, 2)],
     },
   },
   {
     keywords: ["تجارة", "خريج", "غير تقني", "مش تقني", "business", "commerce", "non technical", "non-technical"],
     answer: {
-      ar: "خريجي التخصصات غير التقنية زي التجارة أو الآداب يقدروا يبدأوا من مسارات مناسبة كبداية، زي:\n\n- **تحليل البيانات**\n- **إدارة المشاريع الرقمية**\n- **أساسيات البرمجة**\n\nبرامج زي **أساسيات التحول الرقمي** من MCIT ممكن تكون خطوة أولى قبل التخصص أكتر.",
-      en: "Graduates from non-technical backgrounds such as business or humanities can start with beginner-friendly tracks, such as:\n\n- **Data analysis**\n- **Digital project management**\n- **Programming foundations**\n\nPrograms such as **Digital Transformation Foundations** from MCIT can be a useful first step before specializing further.",
+      ar: "خريجو التخصصات غير التقنية زي **التجارة** أو **الآداب** أو **الحقوق** يقدروا يبدأوا في مسارات متميزة جداً ومطلوبة في سوق العمل، زي:\n\n- **تحليل البيانات (Data Analysis & Power BI)**\n- **تطوير الويب (Frontend Development)**\n- **إدارة المشاريع الرقمية والأنظمة المؤسسية (ERP / SAP)**\n- **التسويق الرقمي والعمل الحر (Freelancing via ITIDA)**",
+      en: "Graduates with non-technical backgrounds like **Business**, **Arts**, or **Law** can excel in top in-demand tracks:\n\n- **Data Analysis & Business Intelligence**\n- **Frontend Web Development**\n- **ERP & Enterprise Systems (SAP, CRM)**\n- **Digital Freelancing (via ITIDA)**",
     },
     sourceIds: ["src-2", "src-3"],
     suggestions: {
@@ -70,6 +139,7 @@ const rules: Rule[] = [
     },
   },
 ];
+
 
 function hashSeed(str: string) {
   let h = 0;
@@ -87,9 +157,55 @@ const GENERAL_ANSWER: LocalizedText = {
   en: "Thanks for your question. Based on the available sources, here are useful starting points:\n\n- Egypt has several trusted technology training institutions such as **ITI**, **NTI**, **DEPI**, **MCIT**, and **ITIDA**\n- Each institution offers different tracks depending on level and specialization\n- You can ask about a specific institution or track for more precise details\n\nWould you like help choosing a suitable path?",
 };
 
-export function generateMockResponse(message: string, language: Language = "ar"): ChatApiResponse {
+export function generateMockResponse(
+  message: string,
+  language: Language = "ar",
+  history: { role: string; content: string }[] = []
+): ChatApiResponse {
   const normalized = message.toLowerCase();
-  const matched = rules.find((rule) => rule.keywords.some((k) => normalized.includes(k)));
+
+  // 1. Direct memory inquiry about conversation history
+  const isFirstQInquiry =
+    normalized.includes("أول سؤال") ||
+    normalized.includes("اول سؤال") ||
+    normalized.includes("سألتك عن إيه") ||
+    normalized.includes("سالتك عن ايه") ||
+    normalized.includes("first question") ||
+    normalized.includes("what did i ask");
+
+  if (isFirstQInquiry && history.length > 0) {
+    const userTurns = history.filter((h) => h.role === "user");
+    if (userTurns.length > 0) {
+      const firstQ = userTurns[0].content;
+      return {
+        answer:
+          language === "ar"
+            ? `أول سؤال سألتهولي كان: **"${firstQ}"** 💬`
+            : `The first question you asked was: **"${firstQ}"** 💬`,
+        sources: [],
+        suggested_questions:
+          language === "ar"
+            ? ["طب إيه تفاصيل برامج NTI؟", "إيه شروط التقديم في ITI؟", "هل التدريب مجاني؟"]
+            : ["Tell me about NTI tracks", "What are ITI admission requirements?", "Is training free?"],
+      };
+    }
+  }
+
+  // 2. Follow-up resolution: check if current question has pronouns ("فيها", "شروطها", "عنها") and blend previous topic
+  let searchTarget = normalized;
+  const isFollowUp =
+    normalized.includes("فيها") ||
+    normalized.includes("عنها") ||
+    normalized.includes("شروطها") ||
+    normalized.includes("مدتها") ||
+    normalized.split(/\s+/).length <= 3;
+
+  if (isFollowUp && history.length > 0) {
+    const prevUserMsg = [...history].reverse().find((h) => h.role === "user")?.content.toLowerCase() ?? "";
+    searchTarget = `${prevUserMsg} ${normalized}`;
+  }
+
+  const matched = rules.find((rule) => rule.keywords.some((k) => searchTarget.includes(k)));
 
   if (matched) {
     return {
@@ -119,3 +235,4 @@ export function generateMockResponse(message: string, language: Language = "ar")
     suggested_questions: DEFAULT_SUGGESTIONS[language],
   };
 }
+

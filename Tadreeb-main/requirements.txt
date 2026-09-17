@@ -1,19 +1,19 @@
 # Scraping
 requests
 beautifulsoup4
-selenium
-playwright
 pdfplumber
+pypdf
 PyMuPDF
 
 # Preprocessing
 pyarabic
+python-dotenv
 
-# RAG: Embeddings / Vector DB / LLM (Ollama - local)
+# RAG: Embeddings / Vector DB / LLM (Ollama)
 ollama
 chromadb
 sentence-transformers
-python-dotenv
+
 
 # Fine-tuning
 unsloth

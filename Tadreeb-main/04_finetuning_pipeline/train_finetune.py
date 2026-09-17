@@ -10,10 +10,12 @@ Fine-tuning teaches the model HOW to respond (style, tone, Egyptian Arabic).
 It is NOT the source of facts — that is RAG's job (03_rag_pipeline/).
 """
 import os
+from pathlib import Path
 
-BASE_MODEL = os.getenv("BASE_MODEL", "Qwen/Qwen2.5-7B-Instruct")
-DATASET_PATH = "../02_data/02_qa_pairs/qa_dataset.jsonl"
-OUTPUT_DIR = "../finetuned_checkpoints"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+BASE_MODEL = os.getenv("BASE_MODEL", "meta-llama/Llama-3.2-3B-Instruct")
+DATASET_PATH = PROJECT_ROOT / "02_data" / "02_qa_pairs" / "qa_dataset.jsonl"
+OUTPUT_DIR = PROJECT_ROOT / "finetuned_checkpoints"
 
 
 def train_lora(use_qlora: bool = False) -> None:

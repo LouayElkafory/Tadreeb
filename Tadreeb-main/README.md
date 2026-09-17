@@ -53,9 +53,7 @@ The chatbot combines two complementary approaches:
    ollama pull nomic-embed-text
    ```
 
-4. Copy `.env.example` to `.env`. The default `FINETUNED_MODEL_NAME` is
-   `depi-iti-nti-assistant:latest`, which is configured to reply in Egyptian
-   Arabic. Keep that value unless you intentionally want to use another model.
+4. Copy `.env.example` to `.env` and adjust values if needed.
 
 ## Building the RAG index and starting the app
 
@@ -75,8 +73,8 @@ cd 06_app
 uvicorn api:app --reload
 ```
 
-If the Egyptian-Arabic Ollama model has not been built on the machine yet, build it
-from `04_finetuning_pipeline/Modelfile`:
+(Optional) build a custom Ollama model from `04_finetuning_pipeline/Modelfile` and
+point `FINETUNED_MODEL_NAME` in `.env` at it:
 
 ```bash
 cd 04_finetuning_pipeline

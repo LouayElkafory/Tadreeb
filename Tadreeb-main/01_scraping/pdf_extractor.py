@@ -6,7 +6,8 @@ import json
 from pathlib import Path
 import pdfplumber
 
-RAW_FOLDER = "../02_data/01_raw"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+RAW_FOLDER = PROJECT_ROOT / "02_data" / "01_raw"
 
 
 def extract_pdf(pdf_path: str) -> list[dict]:

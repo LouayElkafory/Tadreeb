@@ -1,4 +1,4 @@
-# Ollama Modelfile: wraps the base Qwen model with the Egyptian-Arabic
+# Ollama Modelfile: wraps the base Llama model with the Egyptian-Arabic
 # assistant persona learned during LoRA/QLoRA fine-tuning (see train_finetune.py).
 #
 # Build it with:
@@ -6,7 +6,8 @@
 #
 # If you merge the trained LoRA adapter into GGUF weights, point FROM at that
 # GGUF file instead of the base model name.
-FROM qwen2.5:7b
+FROM llama3.2:latest
+
 
 SYSTEM """
 انت مساعد ذكي بترد على أسئلة عن برامج التدريب التقني المصرية

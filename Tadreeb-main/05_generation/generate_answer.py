@@ -1,283 +1,113 @@
 """
-The integration point: question -> RAG retrieval -> grounded prompt -> Qwen -> answer.
+The integration point: question + history -> RAG retrieval -> grounded prompt with memory -> Qwen -> answer.
 """
 import re
 import sys
 from pathlib import Path
 
-from langdetect import DetectorFactory, LangDetectException, detect
-
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "03_rag_pipeline" / "retrieval"))
-from retriever import Retriever, VALID_PROGRAM_NAMES
+from retriever import retrieve
 
 from ollama_client import ask_model
-from prompt_templates import build_prompt
+from prompt_templates import build_memory_prompt, build_prompt
 
-DetectorFactory.seed = 0  # langdetect is otherwise non-deterministic for short text.
-
-ARABIC_CHARACTERS = re.compile(r"[\u0600-\u06ff]")
-CJK_CHARACTERS = re.compile(r"[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]")
-ACRONYM = re.compile(r"\b[A-Z][A-Z0-9-]{2,}\b")
-MIN_RETRIEVAL_SCORE = 0.65  # Lowered from 0.72 to catch more relevant results
-
-
-def retrieval_queries(question: str) -> list[str]:
-    """Generate multiple retrieval queries for better coverage.
-
-    Adds focused English retrieval hints for common Egyptian-Arabic questions.
-    Most official PDFs are English, while users naturally ask in Egyptian Arabic.
-    These hints improve *search only*; they never add facts to the model context.
-    """
-    q = question.lower()
-    queries = [question]
-
-    # Eligibility and requirements
-    if any(word in q for word in ("شرط", "تقديم", "أقدم", "قبول", "eligible", "requirements")):
-        queries.append("eligibility criteria application requirements qualifications who may apply")
-        queries.append("prerequisites acceptance conditions needed to join")
-        if re.search(r"(?<![a-z])iti(?![a-z])", q):
-            queries.append(
-                "ITI professional training program eligibility Egyptian nationals bachelor's degree "
-                "graduated last five academic years full-time commitment university graduates"
-            )
-
-    # Education/Graduate specific
-    if any(word in q for word in ("خريج", "تجارة", "تجاره", "كلية", "كليه", "جامعة", "graduate", "faculty")):
-        queries.append("university graduates Faculty of Commerce business eligible tracks admission")
-        queries.append("bachelor degree holders applied science commerce faculty programs")
-
-    # Program suitability
-    if any(word in q for word in ("مناسب", "ايه", "اللي", "suitable", "which", "best fit")):
-        queries.append("program overview features specializations tracks available options")
-        queries.append("career paths job opportunities outcomes industry focus")
-
-    # Cost/Fees
-    if any(word in q for word in ("مجاني", "مجانى", "تكلفة", "تكلفه", "رسوم", "fee", "free", "cost")):
-        queries.append("government-funded scholarship free training fees cost tuition")
-        queries.append("financial support stipend allowance payment pricing")
-
-    # Timeline/Dates
-    if any(word in q for word in ("موعد", "ميعاد", "تاريخ", "deadline", "when apply", "متي", "اونه")):
-        queries.append("applications open intake period current dates deadlines schedule")
-        queries.append("registration timeline duration months training start date")
-
-    # Program names/comparison
-    if any(word in q for word in ("hireready", "hire ready", "ايه الفرق", "difference", "vs", "compared")):
-        queries.append("HireReady program career development technical training NTI")
-        queries.append("program comparison features benefits track specialization")
-
-    # Skills/Curriculum
-    if any(word in q for word in ("مهارات", "skills", "تعلم", "learn", "دورة", "course", "subjects")):
-        queries.append("curriculum skills training technical subjects modules learning outcomes")
-        queries.append("competencies soft skills career development professional training")
-
-    # Work/Employment
-    if any(word in q for word in ("شغل", "عمل", "وظيفة", "job", "employment", "placement", "career")):
-        queries.append("employment placement on-the-job training internship industry partner")
-        queries.append("job placement career opportunities employment after training")
-
-    # Support/Help
-    if any(word in q for word in ("تعرف", "اساعد", "ايه", "help", "can you")):
-        queries.append("program overview eligibility requirements admission application process")
-        queries.append("ITI NTI DEPI ITIDA differences features benefits specializations")
-
-    return list(dict.fromkeys(queries))
-
-
-def detect_response_language(question: str) -> str:
-    """Return en for a clear English question; otherwise use Egyptian Arabic.
-
-    Arabic-script questions are handled directly because mixed questions such as
-    "DEPI ايه شروطها؟" should get an Egyptian-Arabic answer.  langdetect is
-    used for Latin-script text, and its uncertain/non-English result falls back
-    to Arabic instead of accidentally selecting a third answer language.
-    """
-    if ARABIC_CHARACTERS.search(question):
-        return "ar"
-    try:
-        return "en" if detect(question) == "en" else "ar"
-    except LangDetectException:
-        return "ar"
-
-
-def no_context_message(language: str) -> str:
-    return (
-        "I couldn't find enough information in the available sources to answer this accurately. "
-        "Try asking about eligibility, programs, fees, deadlines, or career outcomes."
-        if language == "en"
-        else "مش لاقي معلومات كافية في المصادر المتاحة عشان أجاوب على السؤال ده بدقة. "
-        "جرب تسأل عن الشروط، البرامج، الرسوم، المواعيد، أو فرص الشغل."
-    )
-
-
-def unavailable_message(language: str) -> str:
-    return (
-        "There is a temporary problem connecting to the model. Please try again shortly."
-        if language == "en"
-        else "في مشكلة مؤقتة في الاتصال بالنموذج، جرب تاني بعد شوية."
-    )
-
-
-def unreliable_answer_message(language: str) -> str:
-    return (
-        "I couldn't produce a reliable answer from the available sources, so I won't guess."
-        if language == "en"
-        else "مش قادر أطلع إجابة موثوقة من المصادر المتاحة، فمش هخمن."
-    )
-
-# واحدة بس لكل العملية - مش بنفتح اتصال جديد بالـChromaDB مع كل سؤال.
-_retriever = Retriever()
-
-
-def detect_programs(question: str) -> list[str]:
-    """
-    فلترة بسيطة بالاسم (iti/nti/depi/itida) لو السؤال بيذكرهم صراحة.
-    مهمة عشان من غير فلتر، الـsimilarity search بيرجع أحيانًا chunks من
-    برنامج تاني خالص (النصوص القصيرة/المشوشة بتظهر قريبة من أي سؤال).
-    """
-    q = question.lower()
-    # Arabic letters are word characters for Python's \b, so "الiti" was not
-    # recognized as ITI and the search accidentally mixed in other organizations.
-    # Match only against Latin letters instead; this still avoids matching ITI
-    # inside an English word such as "utility" and avoids matching it in ITIDA.
-    return [
-        org
-        for org in sorted(VALID_PROGRAM_NAMES, key=len, reverse=True)
-        if re.search(rf"(?<![a-z]){re.escape(org)}(?![a-z])", q)
-    ]
+NO_CONTEXT_MESSAGE = "مش لاقي معلومات كافية في المصادر المتاحة عشان أجاوب على السؤال ده بدقة."
+UNAVAILABLE_MESSAGE = "في مشكلة مؤقتة في الاتصال بالنموذج، جرب تاني بعد شوية."
 
 
 def build_context(chunks: list[dict]) -> str:
-    """Build context with clear source attribution and relevance information."""
-    context_parts = []
-    for index, chunk in enumerate(chunks, start=1):
-        doc_name = chunk['metadata'].get('document', 'official document')
-        page = chunk['metadata'].get('page', '?')
-        score = chunk.get('score', 0)
-
-        # Format header with document info and relevance score
-        header = f"[SOURCE {index}] {doc_name} (page {page})"
-        if score:
-            header += f" [Relevance: {score:.2f}]"
-
-        context_parts.append(f"{header}\n{chunk['text']}")
-
-    return "\n\n" + "─" * 60 + "\n\n".join(context_parts)
+    return "\n\n".join(chunk["text"] for chunk in chunks)
 
 
-def retrieve_chunks(question: str) -> list[dict]:
-    """
-    Smart retrieval with query expansion:
-    - Single program: filter to that program only
-    - Multiple programs: retrieve for each (comparison question)
-    - No program mention: general search
-    - Multiple queries to catch variations
-    """
-    programs = detect_programs(question)
-    queries = retrieval_queries(question)
+def contextualize_query(question: str, history: list[dict] | None) -> str:
+    """If the question is a pronoun/follow-up, blend context from recent user messages."""
+    if not history:
+        return question
 
-    if len(programs) > 1:
-        # Comparison question: get results for each program
-        merged: list[dict] = []
-        seen = set()
-        for org in programs:
-            for query in queries:
-                for chunk in _retriever.retrieve(query, program_name=org, top_k=3):
-                    if chunk["score"] < MIN_RETRIEVAL_SCORE:
-                        continue
-                    key = (chunk["metadata"].get("document"), chunk["metadata"].get("page"), chunk["text"][:50])
-                    if key not in seen:
-                        seen.add(key)
-                        merged.append(chunk)
+    q_lower = question.lower()
+    # Check if question contains pronouns / follow-up references
+    is_followup = any(
+        kw in q_lower
+        for kw in ["فيها", "عنها", "شروطها", "مدتها", "البرنامج ده", "المسار ده", "المؤسسة دي", "it", "them", "there"]
+    ) or len(question.split()) <= 3
 
-        # Return top results, preferring higher scores
-        return sorted(merged, key=lambda chunk: chunk["score"], reverse=True)[:8]
+    if is_followup:
+        # Find the most recent user turn that mentioned specific topics
+        for turn in reversed(history):
+            if turn.get("role") == "user":
+                prev_text = turn.get("content", "")
+                return f"{prev_text} - {question}"
 
-    # Single program or no program mention
-    program = programs[0] if len(programs) == 1 else None
-    merged: list[dict] = []
-    seen = set()
-
-    # Try all queries, keeping track of what we've seen
-    for query in queries:
-        for chunk in _retriever.retrieve(query, program_name=program, top_k=5):
-            if chunk["score"] < MIN_RETRIEVAL_SCORE:
-                continue
-            key = (chunk["metadata"].get("document"), chunk["metadata"].get("page"), chunk["text"][:50])
-            if key not in seen:
-                seen.add(key)
-                merged.append(chunk)
-
-    # Sort by score and return top results
-    return sorted(merged, key=lambda chunk: chunk["score"], reverse=True)[:6]
+    return question
 
 
-def is_safe_answer(answer: str, language: str, context: str) -> bool:
-    """Reject known failure modes before a response reaches the user."""
-    if not answer or CJK_CHARACTERS.search(answer):
-        return False
-
-    if language == "en":
-        # An English answer may keep official abbreviations, but must not turn
-        # into Arabic due to the model's Egyptian-Arabic persona.
-        if ARABIC_CHARACTERS.search(answer):
-            return False
-        try:
-            if detect(answer) != "en":
-                return False
-        except LangDetectException:
-            return False
-    elif not ARABIC_CHARACTERS.search(answer):
-        return False
-
-    context_acronyms = {token.upper() for token in ACRONYM.findall(context)}
-    answer_acronyms = {token.upper() for token in ACRONYM.findall(answer)}
-    # This catches fabricated names such as EPITA in the reported failure.
-    if answer_acronyms - context_acronyms:
-        return False
-    return True
+def is_memory_meta_question(question: str) -> bool:
+    """Check if the user is explicitly asking about what was said in the conversation."""
+    q_norm = question.strip().lower()
+    meta_patterns = [
+        "أول سؤال",
+        "اول سؤال",
+        "سألتك عن إيه",
+        "سالتك عن ايه",
+        "سألتك في إيه",
+        "سالتك في ايه",
+        "فكرني",
+        "قلتلك إيه",
+        "قولتلك ايه",
+        "سؤالي السابق",
+        "السؤال اللي فات",
+        "what was my first question",
+        "what did i ask",
+        "remind me",
+    ]
+    return any(p in q_norm for p in meta_patterns)
 
 
-def correction_prompt(prompt: str, language: str) -> str:
-    required_language = "English" if language == "en" else "Egyptian Arabic"
-    return (
-        f"{prompt}\n\nFINAL SAFETY CHECK: Write the answer again using ONLY the retrieved "
-        f"context. Output ONLY {required_language}. Do not output Chinese, Japanese, Korean, "
-        "or an acronym/name that is absent from the context. If the context cannot support an "
-        "answer, state that the information is unavailable in the provided sources."
-    )
-
-
-def generate_answer(question: str) -> dict:
-    """Run the full RAG + Qwen pipeline for one user question."""
+def generate_answer(question: str, history: list[dict] | None = None) -> dict:
+    """Run the full RAG + LLM pipeline with multi-turn conversation memory."""
     question = question.strip()
-    language = detect_response_language(question) if question else "ar"
     if not question:
-        return {"answer": no_context_message(language), "sources": []}
+        return {"answer": NO_CONTEXT_MESSAGE, "sources": []}
+
+    # Handle direct memory inquiries (e.g. "أنا سألتك في أول سؤال عن إيه؟")
+    if is_memory_meta_question(question) and history:
+        user_messages = [t["content"] for t in history if t.get("role") == "user"]
+        if user_messages:
+            prompt = build_memory_prompt(question=question, history=history)
+            try:
+                answer = ask_model(prompt)
+                return {"answer": answer, "sources": []}
+            except Exception:
+                first_q = user_messages[0]
+                return {
+                    "answer": f"أول سؤال سألتهولي كان: **\"{first_q}\"**",
+                    "sources": [],
+                }
+
+    # Contextualize query for RAG retrieval
+    search_query = contextualize_query(question, history)
 
     try:
-        chunks = retrieve_chunks(question)
+        chunks = retrieve(search_query)
     except Exception:
-        return {"answer": unavailable_message(language), "sources": []}
+        chunks = []
 
-    if not chunks:
-        return {"answer": no_context_message(language), "sources": []}
+    # If contextual query yielded no chunks, try raw question
+    if not chunks and search_query != question:
+        try:
+            chunks = retrieve(question)
+        except Exception:
+            chunks = []
 
-    context = build_context(chunks)
-    prompt = build_prompt(
-        context=context,
-        question=question,
-        response_language=language,
-    )
+    # If still no chunks and history is empty
+    if not chunks and not history:
+        return {"answer": NO_CONTEXT_MESSAGE, "sources": []}
+
+    prompt = build_prompt(context=build_context(chunks), question=question, history=history)
 
     try:
         answer = ask_model(prompt)
-        if not is_safe_answer(answer, language, context):
-            answer = ask_model(correction_prompt(prompt, language))
     except Exception:
-        return {"answer": unavailable_message(language), "sources": []}
-
-    if not is_safe_answer(answer, language, context):
-        return {"answer": unreliable_answer_message(language), "sources": []}
+        return {"answer": UNAVAILABLE_MESSAGE, "sources": []}
 
     return {"answer": answer, "sources": chunks}

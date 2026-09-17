@@ -6,8 +6,10 @@ import csv
 import json
 from pathlib import Path
 
-QA_FOLDER = "../02_data/02_qa_pairs"
-COMBINED_DATASET_PATH = "../02_data/02_qa_pairs/qa_dataset.jsonl"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+QA_FOLDER = PROJECT_ROOT / "02_data" / "02_qa_pairs"
+COMBINED_DATASET_PATH = QA_FOLDER / "qa_dataset.jsonl"
+
 
 # maps a source CSV filename to the org it belongs to
 CSV_TO_ORG = {
