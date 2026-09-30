@@ -1,0 +1,178 @@
+{
+  "organization": "NTI",
+  "organization_name": "NTI (National Telecommunication Institute)",
+  "official_website": "https://www.nti.sci.eg/",
+  "programs": {
+    "Creativa": {
+      "training_type": "online",
+      "description": "In case the candidate wishes to postpone or withdraw from any course, the candidate must inform the initiative management through E-Mail at least 48 Hours before course start date. No messages will be considered except through the official e-mail of the initiative DEY_Creativa@nti.sci.eg.",
+      "source_url": "https://nti.sci.eg/contact_us.html",
+      "tracks": [],
+      "sources": [
+        "NTI_Official_Web_Sources",
+        "nti_qa.jsonl",
+        "nti_web_portal"
+      ]
+    },
+    "Digital Egypt Youth": {
+      "training_type": "online",
+      "description": "The program seeks to cover various digital skills to cater to diverse interests and career paths. The Digital Egypt Youth (DEY) initiative collaborates with industry partners and experts to develop and deliver relevant training content.",
+      "source_url": "https://nti.sci.eg/dey/specialized_programs.html",
+      "tracks": [],
+      "sources": [
+        "NTI_Official_Web_Sources",
+        "nti_qa.jsonl",
+        "nti_web_portal"
+      ]
+    },
+    "Egyptian Talents Academy": {
+      "description": "NTI - National Telecommunication Institute NTI-Huawei Egyptian Talents Academy (ETA) NTI-Huawei Egyptian Talents Academy (ETA) Building digital talents is one of the ICT sector's strategic objectives to fulfill Egypt’s Vision 2030 toward a digital society.",
+      "source_url": "https://nti.sci.eg/eta/",
+      "tracks": [],
+      "sources": [
+        "NTI_Official_Web_Sources"
+      ]
+    },
+    "HireReady": {
+      "duration": "3 months",
+      "duration_unit": "months",
+      "description": "Theses certificates help enhance their employability and serve as credentials for future job opportunities. A key target field of the Digital Egypt Initiative is the electronics & embedded systems to match the presidential initiative HireReady.",
+      "source_url": "https://nti.sci.eg/dey/HireReady.html",
+      "tracks": [],
+      "sources": [
+        "NTI_Official_Web_Sources",
+        "nti_qa.jsonl",
+        "nti_web_portal"
+      ]
+    },
+    "Private Summer Training": {
+      "duration": "120 hours over 4 weeks (30 hours soft skills + 90 hours technical training)",
+      "duration_unit": "hours",
+      "description": "NTI - National Telecommunication Institute Loading... Close Capacity Building - NTI's Private Summer Training Program NTI's Private Summer Training Program Step into the future of technology and innovation with NTI's Private Summer Training Program, designed to equip students with the skills and knowledge needed to exc...",
+      "source_url": "https://nti.sci.eg/prisummer/tracks.php",
+      "tracks": [
+        "Data Engineering",
+        "Electronics and Embedded Systems",
+        "Network Engineering",
+        "Software Engineering",
+        "System Engineering",
+        "Telecom Engineering"
+      ],
+      "sources": [
+        "NTI Private Summer Training Tracks",
+        "NTI_Official_Web_Sources"
+      ]
+    },
+    "Train to Hire": {
+      "duration": "4 months",
+      "duration_unit": "months",
+      "description": "government and industry collaboration. NTI prioritizes high-quality education, training, and innovative research, offering consultancy and technical services. Train To Hire (4 Month) Train To Hire (4 Month) Full scholarship.288 technical hours, 132 soft skills hours, and 120 on job training hours.",
+      "source_url": "https://nti.sci.eg/",
+      "tracks": [],
+      "sources": [
+        "NTI_Official_Web_Sources",
+        "nti_web_portal"
+      ]
+    },
+    "Vendor Academies": {
+      "training_type": "online",
+      "description": "Sophos training programs aim to make sure you have the skills you need as a Sophos Partner to grow your business and secure your customers. Their technical courses are designed to do just that and becoming certified helps you climb the Sophos Partner Program ladder, gaining more rewards as you go.",
+      "source_url": "https://nti.sci.eg/vendor_academies.html",
+      "tracks": [],
+      "sources": [
+        "NTI_Official_Web_Sources",
+        "nti_web_portal"
+      ]
+    },
+    "Wazeefa-Tech": {
+      "description": "NTI - National Telecommunication Institute Wazeefa-Tech Initiative This presidential initiative is categorized under the train-to-hire programs strategy of MCIT. The philosophy here is how to change the traditional model of training and skill development perception.",
+      "source_url": "https://nti.sci.eg/",
+      "tracks": [],
+      "sources": [
+        "NTI_Official_Web_Sources",
+        "nti_web_portal"
+      ]
+    }
+  },
+  "tracks": {
+    "Data Engineering": {
+      "track": "Data Engineering",
+      "program": "Private Summer Training",
+      "duration": "90 hours of technical training (part of the 120-hour, 4-week programme)",
+      "duration_unit": "hours",
+      "sources": [
+        "NTI Private Summer Training Tracks"
+      ],
+      "source_url": "https://nti.sci.eg/prisummer/tracks.php"
+    },
+    "Electronics and Embedded Systems": {
+      "track": "Electronics and Embedded Systems",
+      "program": "Private Summer Training",
+      "duration": "90 hours of technical training (part of the 120-hour, 4-week programme)",
+      "duration_unit": "hours",
+      "sources": [
+        "NTI Private Summer Training Tracks"
+      ],
+      "source_url": "https://nti.sci.eg/prisummer/tracks.php"
+    },
+    "Network Engineering": {
+      "track": "Network Engineering",
+      "program": "Private Summer Training",
+      "duration": "90 hours of technical training (part of the 120-hour, 4-week programme)",
+      "duration_unit": "hours",
+      "sources": [
+        "NTI Private Summer Training Tracks"
+      ],
+      "source_url": "https://nti.sci.eg/prisummer/tracks.php"
+    },
+    "Software Engineering": {
+      "track": "Software Engineering",
+      "program": "Private Summer Training",
+      "duration": "90 hours of technical training (part of the 120-hour, 4-week programme)",
+      "duration_unit": "hours",
+      "sources": [
+        "NTI Private Summer Training Tracks"
+      ],
+      "source_url": "https://nti.sci.eg/prisummer/tracks.php"
+    },
+    "System Engineering": {
+      "track": "System Engineering",
+      "program": "Private Summer Training",
+      "specialization": "Software Engineering",
+      "specializations": [
+        "Data Engineering Big Data Analysis Data Analysis-Sk",
+        "Network Engineering",
+        "Software Engineering"
+      ],
+      "description": "2. System Engineering: Redhat System Administration AWS Cloud 3. Software Engineering: Web Designer Graphic Design MEAN-Stack Web Development Mobile App Development 4. Network Engineering: Cisco CCNA Cyber Ops Associate 5.",
+      "sources": [
+        "NTI_Official_Web_Sources"
+      ],
+      "source_url": "https://nti.sci.eg/prisummer/tracks.php"
+    },
+    "Telecom Engineering": {
+      "track": "Telecom Engineering",
+      "program": "Private Summer Training",
+      "duration": "90 hours",
+      "specialization": "System Engineering",
+      "specializations": [
+        "System Engineering"
+      ],
+      "description": "Delivering a Successful Proposal. Job Profile: Digital Freelancer. Part 2: Technical Tracks (90 Hours). NTI offers 17 technical fields each one will have 90 hours in three weeks as follows: (click on the Program Name to see full details) 1.",
+      "sources": [
+        "NTI_Official_Web_Sources"
+      ],
+      "source_url": "https://nti.sci.eg/prisummer/tracks.php"
+    }
+  },
+  "categories": {
+    "organization_info": 97,
+    "tracks": 67,
+    "programs": 124,
+    "eligibility": 37,
+    "duration": 33,
+    "general": 57,
+    "application": 36,
+    "training_type": 20
+  }
+}

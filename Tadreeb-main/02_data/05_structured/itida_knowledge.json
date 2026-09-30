@@ -1,0 +1,87 @@
+{
+  "organization": "ITIDA",
+  "organization_name": "ITIDA (IT Industry Development Agency)",
+  "official_website": "https://itida.gov.eg/English/Pages/default.aspx",
+  "programs": {
+    "Creativa": {
+      "description": "Start Date : 13 Mar 2025 End Date : 13 Mar 2055 State of DevOps 2024, Insights for Leaders More Next-Gen Digital Twins: Integrating Gen-AI, Internet of Everything, and Physics-Informed Models for Smart Infrastructure Category : Conference Location : CREATIVA - Giza (Ben Al-Sarayat) Start Date : 14 Apr 2025 End Date : 1...",
+      "source_url": "https://itida.gov.eg/English/Pages/default.aspx",
+      "tracks": [],
+      "sources": [
+        "itida_web_portal"
+      ]
+    },
+    "Graduation Projects": {
+      "description": "The proposal is assessed based on a unified yes/no evaluation sheet. The winning projects according to ITAC program are those projects scored the yes answer for all question within the sheet.",
+      "source_url": "https://itida.gov.eg/English/Programs/Graduation/Pages/default.aspx",
+      "tracks": [],
+      "sources": [
+        "ITIDA_Official_Web_Sources"
+      ]
+    },
+    "Student Summer Training": {
+      "duration": "120 hours",
+      "duration_unit": "hours",
+      "training_type": "online",
+      "description": "ITIDA - Student Summer Training Student Summer Training ITIDA > > Programs > Student Summer Training Summer Training Student Summer Training “Student Summer Training,” one of ITIDA’s Human Capital Development Programs (HCDP), began in 2014.",
+      "source_url": "https://itida.gov.eg/English/Programs/StudentSummerTraining/Pages/default.aspx",
+      "tracks": [
+        "Soft Skills"
+      ],
+      "sources": [
+        "ITIDA_Official_Web_Sources",
+        "ITIDA_Student_Summer_Training.pdf"
+      ]
+    },
+    "Summer Training": {
+      "duration": "120 hours",
+      "duration_unit": "hours",
+      "training_type": "online",
+      "description": "It aims to build students' capacities and prepare them to work in the IT market after graduation. In this Summer Internship program, ITIDA collaborates with telecom and technology companies through Corporate Social Responsibility (CSR) initiatives.",
+      "tracks": [],
+      "sources": [
+        "ITIDA_Student_Summer_Training.pdf"
+      ]
+    },
+    "Train to Hire": {
+      "description": "How to Get Involved If your company is looking to train and hire top-tier talent in ITS/BPS or Electronics, Train to Hire offers the perfect opportunity to build your workforce with job-ready professionals. Join us in shaping Egypt’s future in technology and offshoring.",
+      "source_url": "https://itida.gov.eg/english/programs/train-to-hire-program/pages/default.aspx",
+      "tracks": [
+        "Top Management"
+      ],
+      "sources": [
+        "ITIDA_Official_Web_Sources"
+      ]
+    }
+  },
+  "tracks": {
+    "Soft Skills": {
+      "track": "Soft Skills",
+      "program": "Student Summer Training",
+      "description": "BIS - Mass Communication , – Fine Arts – Applied Arts – Specific Education Freelance Second: The joint summer training program between ITIDA and Systel for the disciplines of communications engineering, computer engineering and computer science: ITIDA-Systel Training Program is comprised of: Technical Skills Track: tra...",
+      "sources": [
+        "ITIDA_Official_Web_Sources"
+      ],
+      "source_url": "https://itida.gov.eg/English/Programs/StudentSummerTraining/Pages/default.aspx"
+    },
+    "Top Management": {
+      "track": "Top Management",
+      "program": "Train to Hire",
+      "description": "Skill development tools include group work, case studies, business simulations. Top Management Track Middle Management Track First-Line Management Track Junior Staff Track Train to Hire Program The Train to Hire Program is a strategic initiative designed to equip Egypt’s workforce with the skills required to thrive in...",
+      "sources": [
+        "ITIDA_Official_Web_Sources"
+      ],
+      "source_url": "https://itida.gov.eg/english/programs/train-to-hire-program/pages/default.aspx"
+    }
+  },
+  "categories": {
+    "programs": 64,
+    "organization_info": 95,
+    "duration": 12,
+    "tracks": 13,
+    "eligibility": 26,
+    "application": 36,
+    "general": 32,
+    "training_type": 7
+  }
+}

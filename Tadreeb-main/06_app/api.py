@@ -30,7 +30,13 @@ app = FastAPI(title="Tadreeb AI Backend")
 #   FRONTEND_ORIGIN=https://tadreeb.vercel.app,http://localhost:5173
 # Credentials are intentionally never combined with a wildcard origin - the API
 # is a stateless JSON endpoint (no cookies), so allow_credentials stays False.
-_raw_origins = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")
+#
+# The dev default covers both loopback spellings. A browser treats
+# http://localhost:5173 and http://127.0.0.1:5173 as different origins, and Vite
+# prints whichever one it was started with - so allowing only "localhost" makes
+# the UI fail with a bare connection error that looks like the backend is down.
+DEV_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173"
+_raw_origins = os.getenv("FRONTEND_ORIGIN", DEV_ORIGINS)
 ALLOWED_ORIGINS = [origin.strip() for origin in _raw_origins.split(",") if origin.strip()]
 
 app.add_middleware(
@@ -63,18 +69,71 @@ def guess_organization(org: str) -> str:
     return {"iti": "ITI", "nti": "NTI", "depi": "DEPI", "itida": "ITIDA"}.get(org, "MCIT")
 
 
+def localized(ar: str, en: str | None = None) -> dict:
+    """The {ar, en} shape the frontend's `LocalizedText` type requires.
+
+    `useLanguage().localize()` does a plain `value[language]` lookup, so a bare
+    string reaches the UI as `undefined` and the source card renders blank -
+    no error, just an empty title and organisation. Every user-visible string
+    in a source must be this shape.
+    """
+    return {"ar": ar, "en": en if en is not None else ar}
+
+
 def format_sources(chunks: list[dict]) -> list[dict]:
+    """One entry per distinct source document/page, in retrieval order.
+
+    Several retrieved chunks routinely come from the same page, which used to
+    produce a list of identical citations under the answer.
+    """
     sources = []
+    seen = set()
     for chunk in chunks:
         doc_name = chunk.get("document", "Source Document")
         page_num = chunk.get("page", 1)
+        is_qa = chunk.get("source_type") == "qa"
+
+        # A Q&A chunk's "page" is just its index in the pair file, so citing it
+        # per page lists the same FAQ three times. Cite the collection once.
+        source_id = doc_name if is_qa else f"{doc_name}-p{page_num}"
+        if source_id in seen:
+            continue
+        seen.add(source_id)
+
+        org = guess_organization(chunk.get("org", ""))
+        # Case-insensitive: the web pages are recorded as "DEPI_Official_Web_Portal",
+        # which the previous lowercase-only check never matched.
+        is_web = "web" in doc_name.lower()
+
+        if is_qa:
+            # Curated from the same official material, so it stays within the
+            # SourceType union the frontend declares (Frontend/src/types/index.ts).
+            source_type = "official"
+            title = localized(f"أسئلة وأجوبة {org}", f"{org} Q&A")
+            description = localized(
+                "إجابات معتمدة من المصادر الرسمية",
+                "Answers curated from the official sources",
+            )
+        elif is_web:
+            source_type = "official"
+            title = localized(chunk.get("title") or doc_name)
+            description = localized(
+                "الموقع الرسمي", "Official website"
+            )
+        else:
+            source_type = "document"
+            title = localized(chunk.get("title") or doc_name)
+            description = localized(
+                f"صفحة {page_num}", f"Page {page_num}"
+            )
+
         sources.append({
-            "id": f"{doc_name}-p{page_num}",
-            "title": chunk.get("title", doc_name),
-            "url": chunk.get("url", "#"),
-            "organization": guess_organization(chunk.get("org", "")),
-            "type": "official" if "web" in doc_name else "document",
-            "description": f"صفحة {page_num}" if "web" not in doc_name else "الموقع الرسمي",
+            "id": source_id,
+            "title": title,
+            "url": chunk.get("url") or "#",
+            "organization": localized(org),
+            "type": source_type,
+            "description": description,
         })
     return sources
 
@@ -109,7 +168,7 @@ def health():
 @app.post("/api/chat")
 def chat(request: ChatRequest):
     history_list = [h.model_dump() for h in (request.history or [])]
-    result = generate_answer(request.message, history=history_list)
+    result = generate_answer(request.message, history=history_list, language=request.language)
     return {
         "answer": result["answer"],
         "sources": format_sources(result.get("sources", [])),

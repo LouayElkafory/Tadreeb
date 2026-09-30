@@ -1,7 +1,7 @@
 """
-Fine-tune the base Qwen model on the Q&A dataset using LoRA (or QLoRA).
+Fine-tune the base Llama model on the Q&A dataset using LoRA (or QLoRA).
 
-LoRA:  fine-tunes a small number of extra parameters, keeping the base Qwen
+LoRA:  fine-tunes a small number of extra parameters, keeping the base Llama
        model mostly frozen. Cheap and fast.
 QLoRA: same idea as LoRA, but the base model is loaded in 4-bit (quantized)
        first, so it needs much less GPU memory. Use this when GPU memory is limited.

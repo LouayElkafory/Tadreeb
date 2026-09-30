@@ -6,3 +6,29 @@
 {"question": "إيه مبادرات التدريب الصيفي في ITIDA؟", "expected_org": "itida", "expected_keywords": ["صيفي", "طلاب", "مهارات"]}
 {"question": "خريج تجارة يقدر يدخل مسارات إيه؟", "expected_org": "mcit", "expected_keywords": ["تحليل", "بيانات", "ERP"]}
 {"question": "ما هي الأوراق المطلوبة للتقديم؟", "expected_org": "iti", "expected_keywords": ["بطاقة", "تخرج", "تجنيد"]}
+{"question": "مبادرة رواد مصر الرقمية DEPI بتقدم كام مسار تكنولوجي؟", "expected_org": "depi", "expected_keywords": ["6", "six", "tracks", "مسارات"]}
+{"question": "كورس DevOps Engineer في DEPI مدته كام ساعة؟", "expected_org": "depi", "expected_keywords": ["devops", "162"]}
+{"question": "React Frontend Web Developer بياخد كام ساعة تدريب؟", "expected_org": "depi", "expected_keywords": ["react", "164"]}
+{"question": "إيه هي تخصصات مسار الأمن السيبراني في DEPI؟", "expected_org": "depi", "expected_keywords": ["fortinet", "cybersecurity", "penetration", "security"]}
+{"question": "What tracks does the DEPI AI and Data Science pillar include?", "expected_org": "depi", "expected_keywords": ["generative ai", "data scientist", "machine learning"]}
+{"question": "الراوند التالت من DEPI بيبدأ إمتى؟", "expected_org": "depi", "expected_keywords": ["round 3", "june", "2025"]}
+{"question": "إيه اللي بيعمله الـ Data Analyst Specialist؟", "expected_org": "depi", "expected_keywords": ["data analyst", "power bi", "data"]}
+{"question": "مسار Digital Arts في DEPI فيه إيه؟", "expected_org": "depi", "expected_keywords": ["motion graphics", "ui & ux", "graphics designer", "digital arts"]}
+{"question": "برنامج الـ 9 شهور بتاع ITI ده إيه؟", "expected_org": "iti", "expected_keywords": ["9-month", "scholarship", "professional training"]}
+{"question": "ITI بيبدأ الدفعة الجديدة في أنهي شهر؟", "expected_org": "iti", "expected_keywords": ["october", "أكتوبر"]}
+{"question": "معهد تكنولوجيا المعلومات عنده كام تراك متخصص؟", "expected_org": "iti", "expected_keywords": ["30", "tracks"]}
+{"question": "إيه قواعد الحضور والغياب في ITI؟", "expected_org": "iti", "expected_keywords": ["attendance", "absence", "failures", "student affairs"]}
+{"question": "فين مقر ITI؟", "expected_org": "iti", "expected_keywords": ["smart village", "6 october", "cairo"]}
+{"question": "What is the ITI Code Camp program?", "expected_org": "iti", "expected_keywords": ["code camp", "intensive", "program"]}
+{"question": "التدريب الصيفي بتاع ITIDA مدته كام ساعة؟", "expected_org": "itida", "expected_keywords": ["120", "hours"]}
+{"question": "التدريب الصيفي ITIDA بدأ سنة كام؟", "expected_org": "itida", "expected_keywords": ["2014"]}
+{"question": "إيه الفرق بين برنامج ITIDA مع NTI وبرنامج ITIDA مع Systel؟", "expected_org": "itida", "expected_keywords": ["systel", "nti", "summer training"]}
+{"question": "How many hours is the technical skills track in the ITIDA summer training?", "expected_org": "itida", "expected_keywords": ["90", "technical skills"]}
+{"question": "اتفاقية NTI مع سيسكو هتخرّج كام مدرب؟", "expected_org": "nti", "expected_keywords": ["3", "آلاف", "مدرب", "سيسكو"]}
+{"question": "مذكرة التفاهم بين المعهد القومي للاتصالات وسيسكو مدتها كام سنة؟", "expected_org": "nti", "expected_keywords": ["سنوات", "ألف مدرب", "سيسكو"]}
+{"question": "المعهد القومي للاتصالات بيقدم تدريب في إيه؟", "expected_org": "nti", "expected_keywords": ["شبكات", "أمن المعلومات", "تدريب"]}
+{"question": "شروط التقديم في DEPI إيه؟", "expected_org": "depi", "expected_keywords": ["requirements", "eligib", "شروط", "التقديم"]}
+{"question": "التدريب في DEPI مجاني ولا بفلوس؟", "expected_org": "depi", "expected_keywords": ["free", "مجان", "مجاني"]}
+{"question": "إيه سعر تذكرة القطار من القاهرة لأسوان؟", "expected_org": "", "expected_keywords": [], "expect_no_results": true}
+{"question": "What is the capital of Brazil?", "expected_org": "", "expected_keywords": [], "expect_no_results": true}
+{"question": "إزاي أطبخ كشري؟", "expected_org": "", "expected_keywords": [], "expect_no_results": true}

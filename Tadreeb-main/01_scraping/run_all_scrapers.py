@@ -4,7 +4,9 @@ Orchestrates the full data ingestion pipeline:
 2. Text Cleaning (clean_text.py)
 3. Deduplication (deduplicate.py)
 4. Chunking (chunker.py)
-5. Vector DB Embedding & ChromaDB Upsert (embed_and_store.py)
+5. Q&A pairs -> chunks (qa_to_chunks.py)
+6. Structured knowledge base + fact cards (build_knowledge_base.py)
+7. Vector DB Embedding & ChromaDB Upsert (embed_and_store.py)
 """
 import sys
 import subprocess
@@ -56,7 +58,22 @@ def main():
     run_command(PROJECT_ROOT / "03_rag_pipeline" / "preprocessing" / "chunker.py")
 
     print("\n=========================================")
-    print("🧠 STEP 5: Embedding & Updating Vector DB...")
+    print("❓ STEP 5: Converting Curated Q&A Pairs to Chunks...")
+    print("=========================================")
+    # Without this the vector DB has almost no Arabic text in it - the PDFs
+    # are nearly all English while users ask in Arabic.
+    run_command(PROJECT_ROOT / "03_rag_pipeline" / "preprocessing" / "qa_to_chunks.py")
+
+    print("\n=========================================")
+    print("🧩 STEP 6: Building the Structured Knowledge Base...")
+    print("=========================================")
+    # Extracts the Organization -> Program -> Track hierarchy (with durations and
+    # delivery modes) from the chunks, and writes one short "fact card" per
+    # program/track so a question about a single field has a chunk that answers it.
+    run_command(PROJECT_ROOT / "03_rag_pipeline" / "preprocessing" / "build_knowledge_base.py")
+
+    print("\n=========================================")
+    print("🧠 STEP 7: Embedding & Updating Vector DB...")
     print("=========================================")
     run_command(PROJECT_ROOT / "03_rag_pipeline" / "embeddings" / "embed_and_store.py")
 

@@ -1,0 +1,227 @@
+{
+  "organization": "DEPI",
+  "organization_name": "DEPI (Digital Egypt Pioneers Initiative)",
+  "official_website": "https://depi.gov.eg/aboutdepi",
+  "programs": {
+    "DEPI": {
+      "duration": "6 months",
+      "duration_unit": "months",
+      "training_type": "online",
+      "description": "Students/graduates of Faculties of Specialized Engineering in DEPI are eligible to apply for these job profiles: AI Automation Workflow with N8N Professional, AI in Digital Arts, AWS Machine Learning Engineer, Agentic AI and Generative AI System Developer, Aws Security Cloud Computing, Cross Platform Mobile App Develop...",
+      "source_url": "https://depi.gov.eg/depi",
+      "tracks": [
+        "AI & Data Science",
+        "Data Analytics",
+        "Digital Arts",
+        "Digital Game Creation",
+        "Infrastructure & Security",
+        "Management & ERP",
+        "Software Development"
+      ],
+      "sources": [
+        "DEPI_Official_API"
+      ]
+    },
+    "DEPI Industry": {
+      "duration": "4 months",
+      "duration_unit": "months",
+      "training_type": "online",
+      "description": "DEPI Industry - DEPI Industry track includes the specialisation / job profile: Applied AI Agents for Education and Teaching Professional. Other job profiles under the DEPI Industry track: Applied AI Agents for Education and Teaching Professional, Applied AI Agents for Legal Professional, AI Software Professional, AI He...",
+      "source_url": "https://depi.gov.eg/depiindustry",
+      "tracks": [
+        "DEPI Industry"
+      ],
+      "sources": [
+        "DEPI_Official_API"
+      ]
+    }
+  },
+  "tracks": {
+    "AI & Data Science": {
+      "track": "AI & Data Science",
+      "program": "DEPI",
+      "training_type": "online",
+      "specialization": "Graphics Designer",
+      "specializations": [
+        "AI Automation Workflow with N8N Professional",
+        "AWS Machine Learning Engineer",
+        "Agentic AI and Generative AI System Developer",
+        "Data Analyst Specialist",
+        "Data Scientist",
+        "Generative AI Professional",
+        "Graphics Designer",
+        "IBM Data Scientist",
+        "Microsoft Data Engineer",
+        "Microsoft Machine Learning Engineer",
+        "Professional 3D & VR Designer"
+      ],
+      "description": "AI & DATA SCIENCE TRACK 5. Huawei Big Data Engineer Using Huawei technology mainly, Huawei Big Data Engineer designs software, programs and algorithms that help to deal with data and big data and take actions independently without receiving direction to perform these specific tasks.",
+      "sources": [
+        "DEPI-CATALOG-2025-R3-V4 (2).pdf",
+        "DEPI_Official_API",
+        "Technical Tracks Catalog.pdf"
+      ],
+      "source_url": "https://depi.gov.eg/depi"
+    },
+    "DEPI Industry": {
+      "track": "DEPI Industry",
+      "program": "DEPI Industry",
+      "training_type": "online",
+      "specialization": "Applied AI Agents for Education and Teaching Professional",
+      "specializations": [
+        "AI Healthcare Professional",
+        "AI Software Professional",
+        "Advanced Marketing Automation with AI Professional",
+        "Applied AI Agents for Education and Teaching Professional",
+        "Applied AI Agents for Legal Professional",
+        "Oracle Fusion Financial Consultant"
+      ],
+      "description": "DEPI Industry - DEPI Industry track includes the specialisation / job profile: Applied AI Agents for Education and Teaching Professional. Other job profiles under the DEPI Industry track: Applied AI Agents for Education and Teaching Professional, Applied AI Agents for Legal Professional, AI Software Professional, AI He...",
+      "sources": [
+        "DEPI_Official_API"
+      ],
+      "source_url": "https://depi.gov.eg/depiindustry"
+    },
+    "Data Analytics": {
+      "track": "Data Analytics",
+      "program": "DEPI",
+      "specialization": "Generative AI Professional",
+      "specializations": [
+        "Generative AI Professional",
+        "Junior Data Analyst",
+        "Professional Data Analyst"
+      ],
+      "description": "DATA ANALYTICS TRACK Data analysis aims at getting useful insights using the given data to support the process of decision making. The field of data analysis has witnessed great importance in recent years due to the boom in technology and the availability of advanced tools and techniques that help provide better result...",
+      "sources": [
+        "DEPI-CATALOG-2025-R3-V4 (2).pdf",
+        "DEPI_Official_API",
+        "Technical Tracks Catalog.pdf"
+      ],
+      "source_url": "https://depi.gov.eg/depi"
+    },
+    "Digital Arts": {
+      "track": "Digital Arts",
+      "program": "DEPI",
+      "specialization": "Digital Marketing Specialist",
+      "specializations": [
+        "AI in Digital Arts",
+        "Autodesk Maya Professional / Character Designer",
+        "Digital Marketing Specialist",
+        "Media Production Influencer",
+        "Motion Graphics Designer",
+        "UI & UX Web Designer"
+      ],
+      "description": "Overview: In a rapidly evolving business environment, adapting to digital transformation has become essential. One of the most significant developments is the growing importance of creative digital marketing and digital arts.",
+      "sources": [
+        "DEPI_Official_API",
+        "Technical Tracks Catalog.pdf"
+      ],
+      "source_url": "https://depi.gov.eg/depi"
+    },
+    "Digital Game Creation": {
+      "track": "Digital Game Creation",
+      "program": "DEPI",
+      "specialization": "Immersive Game Designer",
+      "specializations": [
+        "Game Developer",
+        "Immersive Game Designer"
+      ],
+      "description": "DEPI - Digital Game Creation track includes the specialisation / job profile: Immersive Game Designer. Other job profiles under the Digital Game Creation track: Immersive Game Designer, Game Developer.",
+      "sources": [
+        "DEPI_Official_API"
+      ],
+      "source_url": "https://depi.gov.eg/depi"
+    },
+    "Digital Marketing & Arts": {
+      "track": "Digital Marketing & Arts",
+      "description": "DIGITAL MARKETING & ARTS TRACK Do you want to turn your love of art into a job? This program teaches you how! You'll learn how to create amazing things and how to sell them online.",
+      "sources": [
+        "DEPI-CATALOG-2025-R3-V4 (2).pdf"
+      ]
+    },
+    "Infrastructure & Security": {
+      "track": "Infrastructure & Security",
+      "program": "DEPI",
+      "training_type": "online",
+      "specialization": "Huawei Network Administrator",
+      "specializations": [
+        "AWS Cloud Solution Admin & Architect",
+        "AWS Security Cloud Computing",
+        "Cisco Cybersecurity Engineer",
+        "Cisco Network Administrator",
+        "Cyber Security Incident Response Analyst",
+        "Data Analyst Specialist",
+        "Forensics Investigator",
+        "Fortinet Cybersecurity Engineer Fortinet Cybersecur",
+        "Google Technical Support Specialist",
+        "Governance and Risk Compliance",
+        "Huawei Network Administrator",
+        "Information Security Compliance & ISO 27001 Specialist",
+        "Microsoft Power BI Engineer",
+        "Vulnerability Analyst / Penetration Tester",
+        "Vulnerability Analyst and Penetration Tester"
+      ],
+      "description": "INFRASTRUCTURE & SECURITY TRACK 5. Vulnerability Analyst and Penetration Tester A Vulnerability Analyst / Penetration Tester is capable of the following; Ensuring that all Network security tests are conducted within the framework set by Mastercard, Ensure that all test cases and tools are used appropriately for testing...",
+      "sources": [
+        "DEPI-CATALOG-2025-R3-V4 (2).pdf",
+        "DEPI_Official_API",
+        "Technical Tracks Catalog.pdf"
+      ],
+      "source_url": "https://depi.gov.eg/depi"
+    },
+    "Management & ERP": {
+      "track": "Management & ERP",
+      "program": "DEPI",
+      "training_type": "online",
+      "specialization": "Odoo Application Consultant",
+      "specializations": [
+        "Google Project Management",
+        "Odoo Application Consultant",
+        "SAP S/4HANA FI Consultant",
+        "SAP S/4HANA MM Consultant"
+      ],
+      "description": "DEPI - Management & ERP track includes the specialisation / job profile: Odoo Application Consultant. Other job profiles under the Management & ERP track: Odoo Application Consultant, SAP S/4HANA MM Consultant, SAP S/4HANA FI Consultant, Google Project Management.",
+      "sources": [
+        "DEPI_Official_API"
+      ],
+      "source_url": "https://depi.gov.eg/depi"
+    },
+    "Software Development": {
+      "track": "Software Development",
+      "program": "DEPI",
+      "training_type": "online",
+      "specialization": "DevOps Engineer",
+      "specializations": [
+        "AWS Cloud Specialist",
+        "Cross Platform Mobile App Developer",
+        "DevOps Engineer",
+        "Frontend Developer",
+        "Full stack .Net Web Developer",
+        "Go Blockchain Developer",
+        "Low-Code/No-Code Application Developer",
+        "Mobile App Developer",
+        "PHP Web Developer",
+        "React Frontend Web Developer",
+        "React Web Developer",
+        "Software Tester"
+      ],
+      "description": "Overview: This track equips participants with the knowledge and skills required to develop high-quality software applications using modern programming tools and technologies.",
+      "sources": [
+        "DEPI-CATALOG-2025-R3-V4 (2).pdf",
+        "DEPI_Official_API",
+        "Technical Tracks Catalog.pdf"
+      ],
+      "source_url": "https://depi.gov.eg/depi"
+    }
+  },
+  "categories": {
+    "organization_info": 17,
+    "tracks": 253,
+    "eligibility": 69,
+    "general": 129,
+    "application": 21,
+    "programs": 76,
+    "duration": 47,
+    "training_type": 8
+  }
+}

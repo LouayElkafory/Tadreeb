@@ -49,7 +49,7 @@ The chatbot combines two complementary approaches:
 3. Download the base language model and embedding model:
 
    ```bash
-   ollama pull qwen2.5:7b
+   ollama pull llama3.1:8b
    ollama pull nomic-embed-text
    ```
 
@@ -60,11 +60,53 @@ The chatbot combines two complementary approaches:
 Run each pipeline stage once, in order, from the project root:
 
 ```bash
-cd 01_scraping && python pdf_extractor.py && cd ..
-cd 03_rag_pipeline/preprocessing && python clean_text.py && python deduplicate.py && python chunker.py && cd ../..
-cd 03_rag_pipeline/embeddings && python embed_and_store.py && cd ../..
+python 01_scraping/pdf_extractor.py
+python 03_rag_pipeline/preprocessing/clean_text.py
+python 03_rag_pipeline/preprocessing/deduplicate.py
+python 03_rag_pipeline/preprocessing/chunker.py
+python 03_rag_pipeline/preprocessing/qa_to_chunks.py
+python 03_rag_pipeline/preprocessing/build_knowledge_base.py
+python 03_rag_pipeline/embeddings/embed_and_store.py
 cd 04_finetuning_pipeline && python prepare_dataset.py && cd ..
 ```
+
+Optionally add general public information about the four organisations from
+their official websites. This one is **incremental**: it adds new chunks to the
+vector DB built above and leaves every existing PDF, chunk and vector alone, so
+it can be re-run whenever the sites change.
+
+```bash
+cd 01_scraping && python collect_web_data.py && cd ..
+```
+
+It processes ITI, NTI, DEPI and ITIDA in the same run and reports per
+organisation; one site being unreachable does not stop the others. See
+`01_scraping/README.md` for what it collects and where it writes.
+
+If you added web data (or changed the chunks) after the index was built, refresh
+the structured knowledge base and add it to the existing vector DB without
+re-embedding everything:
+
+```bash
+python 03_rag_pipeline/preprocessing/build_knowledge_base.py
+python 03_rag_pipeline/embeddings/backfill_structure.py
+```
+
+That writes the `Organization -> Program -> Track` hierarchy to
+`02_data/05_structured/<org>_knowledge.json`, tags every existing chunk with the
+category/track/duration metadata retrieval ranks on, and indexes one fact card per
+program and track. It never deletes or re-embeds an existing chunk - see
+`03_rag_pipeline/README.md`.
+
+Then confirm retrieval is healthy before doing anything else:
+
+```bash
+python 07_evaluation/evaluate_retrieval.py
+```
+
+It should report a high hit rate **and** refuse every out-of-corpus question.
+If it reports a warning that the collection uses `l2` distance, the index is
+stale - re-run `embed_and_store.py`.
 
 Then start the API:
 
@@ -117,7 +159,7 @@ For a detailed file-by-file workflow, see
 
 The backend (`06_app`) and frontend (`Frontend`) deploy as two separate
 services, matching the existing architecture (Frontend/Vercel -> FastAPI
-backend -> RAG pipeline -> ChromaDB -> Qwen/Ollama).
+backend -> RAG pipeline -> ChromaDB -> Llama/Ollama).
 
 **Backend (any standard Python host - not a serverless function, since the
 LLM/embedding steps are long-running and stateful):**
@@ -145,6 +187,69 @@ minimum set:
 the default Vite build (`npm run build`, output `dist` - see
 `Frontend/vercel.json`), and set `VITE_API_URL` to the deployed backend URL
 and `VITE_USE_MOCK_API=false` in the Vercel project's environment variables.
+
+## Choosing the LLM
+
+By default everything runs on the local Ollama model, with no key and no
+internet. To use a hosted model instead - faster, and noticeably better at mixed
+Arabic/English questions - set two variables in `.env`:
+
+```bash
+LLM_PROVIDER=groq        # or openai, gemini
+LLM_API_KEY=...          # never commit this; .env is gitignored
+LLM_MODEL=               # blank = the provider's default
+```
+
+Ollama stays the automatic fallback: if a hosted call fails for any reason, the
+same prompt is retried locally rather than failing the request. You can also
+split the two jobs, so the cheap query-rewriting step runs on a fast hosted model
+while the grounded answer is still written locally:
+
+```bash
+QUERY_LLM_PROVIDER=groq
+```
+
+## Answer quality
+
+Two properties are tested together, because improving one at the other's
+expense is easy and useless:
+
+- **Retrieval finds the answer** when the corpus contains it.
+- **Retrieval returns nothing** when it doesn't, so the assistant says "not in
+  the sources" instead of inventing one.
+
+```bash
+python 07_evaluation/evaluate_retrieval.py   # retrieval only, seconds, no LLM
+python 07_evaluation/evaluate_answers.py     # full pipeline incl. the LLM, minutes
+```
+
+With the backend and frontend both running, the end-to-end tests exercise the
+full chain (React UI -> FastAPI -> RAG -> Ollama):
+
+```bash
+node 07_evaluation/e2e/api_contract.mjs   # backend as the browser calls it
+node 07_evaluation/e2e/browser_ui.mjs     # headless Chrome against the real UI
+```
+
+See `07_evaluation/e2e/README.md`. These catch failures invisible to either
+side alone - a valid JSON response that renders as a blank source card, or a
+CORS origin mismatch that surfaces only as "تعذر الاتصال بالخادم".
+
+The test set is `07_evaluation/test_questions.jsonl`; entries marked
+`expect_no_results` are deliberately outside the corpus. Retrieval thresholds
+are calibrated against it, so re-run these after changing the corpus or the
+embedding model. See `03_rag_pipeline/README.md` for what each threshold does
+and the known limitations.
+
+Grounding rules worth preserving when changing `05_generation`:
+
+- An empty retrieval result must never reach the LLM. Answering "helpfully"
+  without sources is what produced invented hours, dates and admission rules.
+- The reply language is pinned explicitly in the prompt. The fine-tuned model
+  is Qwen-based and drifts into Chinese without it.
+- `LLM_NUM_CTX` must be large enough for the whole prompt. Ollama silently
+  truncates the *front* of an oversized prompt, which is where the grounding
+  instructions live.
 
 ## Data and Model Responsibilities
 

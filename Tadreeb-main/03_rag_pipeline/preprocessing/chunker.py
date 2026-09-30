@@ -15,8 +15,9 @@ CHUNK_SIZE = 500
 OVERLAP = 100
 MIN_CHUNK_SIZE = 40  # drop trailing scraps too short to carry standalone meaning
 
-# Arabic and Latin sentence terminators, plus newlines as a weaker boundary.
-_SENTENCE_SPLIT = re.compile(r"(?<=[.!?؟۔])\s+|\n+")
+# Arabic and Latin sentence terminators (including the Arabic comma, which is the
+# only break in the catalogue's long list-style lines), plus newlines.
+_SENTENCE_SPLIT = re.compile(r"(?<=[.!?\u061F\u06D4\u060C;])\s+|\n+")
 
 
 def split_sentences(text: str) -> list[str]:
@@ -87,17 +88,19 @@ def chunk_text(text: str, chunk_size: int = CHUNK_SIZE, overlap: int = OVERLAP) 
     return [c for c in chunks if len(c) >= MIN_CHUNK_SIZE]
 
 
+# Page-level fields worth carrying onto every chunk. `title` and `url` come from
+# the web scrapers; dropping them (as this used to) left the API with no real
+# source title or link to cite, so every web-sourced answer pointed at "#".
+CARRIED_FIELDS = ("org", "document", "page", "title", "url")
+
+
 def chunk_pages(pages: list[dict]) -> list[dict]:
-    """Turn cleaned pages into chunks, each keeping org/document/page metadata."""
+    """Turn cleaned pages into chunks, each keeping its page's source metadata."""
     all_chunks = []
     for page in pages:
+        metadata = {k: page[k] for k in CARRIED_FIELDS if page.get(k) not in (None, "")}
         for piece in chunk_text(page["text"]):
-            all_chunks.append({
-                "org": page["org"],
-                "document": page["document"],
-                "page": page["page"],
-                "text": piece,
-            })
+            all_chunks.append({**metadata, "text": piece})
     return all_chunks
 
 

@@ -13,6 +13,16 @@ sys.path.insert(0, str(ROOT / "05_generation"))
 
 from generate_answer import generate_answer
 
+# These scripts print Arabic. On Windows the console defaults to a legacy code
+# page (cp1256/cp437) that cannot encode it, and printing raises UnicodeEncodeError
+# part-way through a run. Force UTF-8 on our own streams.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
+
 def main():
     print("=" * 60)
     print("🤖 مرحباً بك في تجربة Tadreeb AI مع الذاكرة والـ RAG!")

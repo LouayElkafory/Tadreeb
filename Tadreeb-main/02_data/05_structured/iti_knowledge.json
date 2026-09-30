@@ -1,0 +1,211 @@
+{
+  "organization": "ITI",
+  "organization_name": "ITI (Information Technology Institute)",
+  "official_website": "https://maharatech.gov.eg/mod/page/view.php?id=14155",
+  "programs": {
+    "AI Academy": {
+      "training_type": "online",
+      "description": "Mahara-Tech: أكاديمية الذكاء الاصطناعي للجميع | Mahara-Tech × الدخول لحسابك ليس لديك حساب؟ التسجيل! تذكر اسم المستخدم هل فقدت كلمة المرور؟ تسجيل دخول قم بتسجيل الدخول باستخدام حسابك على: تنويه الخصوصية: هذا التطبيق يجمع فقط اسمك وبريدك الإلكتروني لإنشاء حسابك التعليمي. لا يتم تتبع بياناتك أو استخدامها لأغراض إعلانية.",
+      "source_url": "https://maharatech.gov.eg/mod/page/view.php?id=14155",
+      "tracks": [],
+      "sources": [
+        "ITI_Official_Web_Sources"
+      ]
+    },
+    "Intensive Code Camp": {
+      "duration": "9 months",
+      "duration_unit": "months",
+      "description": "معهد تكنولوجيا المعلومات (ITI) مؤسسة تابعة لوزارة الاتصالات وتكنولوجيا المعلومات المصرية. يقدم المعهد برامج تدريبية تهدف إلى إعداد كوادر تقنية متخصصة تخدم سوق العمل المحلي والدولي.",
+      "tracks": [],
+      "sources": [
+        "ITI_Official_Web_Portal",
+        "ITI_e-Brochure_2021.pdf"
+      ]
+    },
+    "Mahara-Tech": {
+      "training_type": "online",
+      "description": "Mahara-Tech: تصنيفات المقررات | Mahara-Tech × الدخول لحسابك ليس لديك حساب؟ التسجيل! تذكر اسم المستخدم هل فقدت كلمة المرور؟ تسجيل دخول قم بتسجيل الدخول باستخدام حسابك على: تنويه الخصوصية: هذا التطبيق يجمع فقط اسمك وبريدك الإلكتروني لإنشاء حسابك التعليمي. لا يتم تتبع بياناتك أو استخدامها لأغراض إعلانية.",
+      "source_url": "https://maharatech.gov.eg/course/index.php",
+      "tracks": [],
+      "sources": [
+        "ITI_Official_Web_Sources",
+        "ITI_e-Brochure_2021.pdf",
+        "iti_qa.jsonl"
+      ]
+    },
+    "Professional Training Program": {
+      "duration": "1,308 hours",
+      "duration_unit": "hours",
+      "training_type": "blended",
+      "description": "PROFESSIONAL TRAINING PROGRAM LAST UPDATED: JUL 2026 complete architectural journey. This track starts with the fundamentals of residential, public, and landscape/urban design, moves through the industry's most powerful 2D and 3D visualization tools, the track also covers sustainability and LEED standards, execution fu...",
+      "source_url": "https://en.wikipedia.org/wiki/Information_Technology_Institute",
+      "tracks": [
+        "2D Animation and Motion Graphics",
+        "Data Management",
+        "Data Science",
+        "Digital Arts & 3D Animation",
+        "Digital IC Design",
+        "Embedded & Edge Architectures",
+        "Game Programming",
+        "Industrial Automation",
+        "Telco-Cloud Engineering",
+        "VFX Compositing"
+      ],
+      "sources": [
+        "3.pdf",
+        "4.pdf",
+        "5.pdf",
+        "6.pdf",
+        "GetResourceFileForPublicUsers (1) .pdf",
+        "GetResourceFileForPublicUsers (10).pdf",
+        "GetResourceFileForPublicUsers (11).pdf",
+        "GetResourceFileForPublicUsers (12).pdf",
+        "GetResourceFileForPublicUsers (2).pdf",
+        "GetResourceFileForPublicUsers (3).pdf",
+        "GetResourceFileForPublicUsers (4).pdf",
+        "GetResourceFileForPublicUsers (5).pdf",
+        "GetResourceFileForPublicUsers (6).pdf",
+        "GetResourceFileForPublicUsers (7).pdf",
+        "GetResourceFileForPublicUsers (9).pdf",
+        "GetResourceFileForPublicUsers .pdf",
+        "GetResourceFileForPublicUsers cloud.pdf",
+        "GetResourceFileForPublicUsers cross.pdf",
+        "GetResourceFileForPublicUsers fullstack.pdf",
+        "GetResourceFileForPublicUsers java.pdf",
+        "GetResourceFileForPublicUsers native.pdf",
+        "GetResourceFileForPublicUsers opensource.pdf",
+        "ITI_Official_Web_Sources",
+        "ITI_e-Brochure_2021.pdf",
+        "assets_pdfs_Student Handbook for ITI Programs (1).pdf"
+      ]
+    },
+    "Wazeefa-Tech": {
+      "description": "and governmental sectors. Industry Partnerships Industry role has been encouraged and empowered through the newly designed initiative called “Wazeefa-Tech”. ITI in cooperation with National Telecommunications Institute (NTI) and the Ministry of Social Solidarity (MoSS) launched “Wazeefa - Tech” initiative, a mechanism...",
+      "tracks": [],
+      "sources": [
+        "ITI_e-Brochure_2021.pdf",
+        "iti_qa.jsonl"
+      ]
+    }
+  },
+  "tracks": {
+    "2D Animation and Motion Graphics": {
+      "track": "2D Animation and Motion Graphics",
+      "program": "Professional Training Program",
+      "duration": "1,344 hours",
+      "training_type": "blended",
+      "description": "Online exam covering problem-solving aptitude and English proficiency. 02 Technical Exam Computer-based assessment covering the program's core technical fundamentals. 03 Technical Interview Interview with the technical committee.",
+      "sources": [
+        "GetResourceFileForPublicUsers (10).pdf"
+      ]
+    },
+    "Data Management": {
+      "track": "Data Management",
+      "program": "Professional Training Program",
+      "duration": "1,180 hours",
+      "training_type": "blended",
+      "description": "Apache HBase Essentials, Apache Kafka, Apache Pig, Hive and Impala, Apache Scala Programming Language, Apache Spark Essentials, Bash Shell Script, Big Data Case Study, Business Objects Webi / Universe, Cloud Computing Fundamentals for Data Analysis, Containerization using Docker, Data Analysis for Data Management, Data...",
+      "sources": [
+        "4.pdf"
+      ]
+    },
+    "Data Science": {
+      "track": "Data Science",
+      "program": "Professional Training Program",
+      "duration": "1,455 hours",
+      "training_type": "blended",
+      "description": "TOTAL HOURS 1,455hrs Theory + hands-on labs DELIVERY Blended Online & on-site UNIVERSITY GRADE Good Minimum grade required CERTIFICATIONS 6 Industry-certified Where graduates work Vodafone Egypt Vois Cyshield BBI EFG Hermes Data Science Etisalat Egypt Orange Egypt Fawry Aman AAIB CIB Valeo National Bank of Egypt Bank M...",
+      "sources": [
+        "5.pdf"
+      ]
+    },
+    "Digital Arts & 3D Animation": {
+      "track": "Digital Arts & 3D Animation",
+      "program": "Professional Training Program",
+      "duration": "1,353 hours",
+      "training_type": "blended",
+      "description": "PROFESSIONAL TRAINING PROGRAM LAST UPDATED: JUL 2026 The Digital Arts & 3D Animation track develops graduates into production-ready CG artists and animators capable of rigging, animating, and polishing character and creature performances at a professional studio level.",
+      "sources": [
+        "GetResourceFileForPublicUsers (11).pdf"
+      ]
+    },
+    "Digital IC Design": {
+      "track": "Digital IC Design",
+      "program": "Professional Training Program",
+      "duration": "1,398 hours",
+      "training_type": "blended",
+      "description": "IQ & English Exam Online exam covering problem-solving aptitude and English proficiency. 02 Technical Exam Computer-based assessment covering the program's core technical fundamentals. 03 Technical Interview Interview with the technical committee.",
+      "sources": [
+        "GetResourceFileForPublicUsers .pdf"
+      ]
+    },
+    "Embedded & Edge Architectures": {
+      "track": "Embedded & Edge Architectures",
+      "program": "Professional Training Program",
+      "duration": "1,365 hours",
+      "training_type": "blended",
+      "description": "PROFESSIONAL TRAINING PROGRAM LAST UPDATED: JUL 2026 Embedded & Edge Architectures track is a large-scale diploma program designed to take engineers from embedded systems concepts through to advanced, industry-grade specializations in automotive, real-time operating systems, Embedded Linux, Embedded Android, edge/Physi...",
+      "sources": [
+        "GetResourceFileForPublicUsers (2).pdf"
+      ]
+    },
+    "Game Programming": {
+      "track": "Game Programming",
+      "program": "Professional Training Program",
+      "duration": "1,212 hours",
+      "training_type": "blended",
+      "description": "Object-Oriented Data Structures in C++ https://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm Good knowledge in mathematic and physics https://www.khanacademy.org/ Game Programming Jop Profiles https://maharatech.gov.eg/mod/hvp/view.php?id=10175 Pipeline of Game Production & Main Job Profiles https://maharatech.g...",
+      "sources": [
+        "GetResourceFileForPublicUsers (4).pdf"
+      ]
+    },
+    "Geospatial Technologies (GIS)": {
+      "track": "Geospatial Technologies (GIS)",
+      "duration": "9 months",
+      "description": "The Geospatial Technologies (GIS) Track is a 9-month professional diploma designed to prepare trainees for careers in GIS, geospatial software development, and spatial data analysis.",
+      "sources": [
+        "1.pdf"
+      ]
+    },
+    "Industrial Automation": {
+      "track": "Industrial Automation",
+      "program": "Professional Training Program",
+      "duration": "1,301 hours",
+      "training_type": "blended",
+      "description": "Applicants are expected to have reviewed this material. Automation Systems https://www.udemy.com/course/sas-substationautomation-withhossamembaby/ Mechatronics and Industrial Internet of Things https://www.udemy.com/course/mechatronics-and-industrial-internet-of-things/ Electrical Design in Industrial Automation - The...",
+      "sources": [
+        "GetResourceFileForPublicUsers (1) .pdf"
+      ]
+    },
+    "Telco-Cloud Engineering": {
+      "track": "Telco-Cloud Engineering",
+      "program": "Professional Training Program",
+      "duration": "1,333 hours",
+      "training_type": "blended",
+      "description": "PROFESSIONAL TRAINING PROGRAM LAST UPDATED: JUL 2026 The Telco-Cloud Engineering Track focuses on next-generation wireless networks. It seamlessly blends advanced telecom infrastructure with cutting-edge cloud technologies, machine learning, and autonomous, agentic AI systems.Learners dive deep into modern cloud-native...",
+      "sources": [
+        "GetResourceFileForPublicUsers (3).pdf"
+      ]
+    },
+    "VFX Compositing": {
+      "track": "VFX Compositing",
+      "program": "Professional Training Program",
+      "duration": "1,308 hours",
+      "training_type": "blended",
+      "description": "VFX COMPOSITING PROFESSIONAL TRAINING PROGRAM Program content — 1,308 hours CATEGORY HOURS SHARE KEY COURSES Core Courses 678 hrs 52% On-Set Supervision, 3D for VFX Production, Color Grading, Nuke: Grading and Integration, VFX Portfolio Making, Nuke: Keying, Introduction to Compositing, Introduction to Motion Graphics...",
+      "sources": [
+        "GetResourceFileForPublicUsers (5).pdf"
+      ]
+    }
+  },
+  "categories": {
+    "programs": 140,
+    "training_type": 48,
+    "duration": 28,
+    "application": 66,
+    "tracks": 60,
+    "organization_info": 70,
+    "general": 37,
+    "eligibility": 8
+  }
+}
